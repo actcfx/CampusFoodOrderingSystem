@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Claude Code 個人設定
+.claude/settings.local.json
+
+# 未去敏的原始 transcript（只提交去敏後的 bolt-NN/）
+ai/transcripts/raw/
+
+# 環境變數 / 憑證
+.env
+.env.*
