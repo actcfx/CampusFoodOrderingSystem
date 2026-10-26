@@ -154,9 +154,11 @@ AI 提出的變更也必須走這個流程。agent 不可以直接修改已核�
 
     ```bash
     uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
-    specify init --here --ai codex --ai-skills
+    specify init --here --force --integration codex
     specify check
     ```
+
+    初始化會新增 `.specify/`（範本、腳本、憲章）與 `.agents/skills/speckit-*/`（Codex skills），不會修改既有的 `AGENTS.md` 與 `.codex/`。執行後用 `git status` 確認沒有被修改的檔案。
 
 2. 確認 `specify check` 顯示 Codex 可用。如果指令名稱與本文件不同，以實際版本為準，並更新本文件。
 3. 把 `.codex/agents/` 中的模型名稱改成你們帳號可用的模型。
