@@ -1,8 +1,8 @@
 # Replace the placeholders with GitHub usernames.
-/specs/          @PO_USERNAME
-/changes/        @PO_USERNAME
-/reviews/        @REVIEWER_USERNAME
-/ai/             @REVIEWER_USERNAME
-/.codex/         @PO_USERNAME @REVIEWER_USERNAME
-/AGENTS.md       @PO_USERNAME @REVIEWER_USERNAME
-/METHOD.md       @PO_USERNAME @REVIEWER_USERNAME
+/specs/          @actcfx
+/changes/        @actcfx
+/reviews/        @BSugarSweet
+/ai/             @BSugarSweet
+/.codex/         @actcfx @BSugarSweet
+/AGENTS.md       @actcfx @BSugarSweet
+/METHOD.md       @actcfx @BSugarSweet
