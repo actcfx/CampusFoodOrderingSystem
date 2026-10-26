@@ -1,19 +1,6 @@
-<!--
-Sync Impact Report — draft for human review; remove before committing.
-Version change: 0.1.0 → 0.2.0 (unratified draft; adds human peer review).
-Modified principles: added VIII. Human Peer Review, sourced from METHOD.md §3.1.
-Modified sections: Scope and File Ownership now references METHOD.md §3.2 and §4;
-scope attribution corrected to the METHOD.md introduction; Governance sources and
-compliance review updated to include human peer review.
-Added sections: principle VIII only.
-Removed sections: duplicated ownership table and task-specific drafting description.
-Deferred: TODO(RATIFICATION_DATE): humans must record the adoption date after approval.
-Version notation is document metadata: MAJOR for incompatible rule changes, MINOR for
-added or expanded rules, PATCH for wording corrections; this does not authorize changes.
--->
 # Campus Food Ordering System Constitution
 
-Status: DRAFT — awaiting human review and approval.
+Status: Ratified at gate G0. Review record: `reviews/bolt-00-g0.md`.
 
 ## Core Principles
 
@@ -98,16 +85,16 @@ open questions, and the next gate.
 
 Agents MUST stop at G1, G2, G3, G4, and G5 and wait for human approval. The meaning
 and sequence of these gates remain defined by METHOD.md. UML MUST wait for G3;
-final traceability MUST wait for completed UML. No gate is approved by this draft.
+final traceability MUST wait for completed UML.
 
 Source: AGENTS.md, Orchestrator and Gates; METHOD.md §2.1–§2.4.
 
 ## Governance
 
-This document is a draft of the principles in METHOD.md §2, the human peer review
+This constitution states the principles in METHOD.md §2, the human peer review
 rule in METHOD.md §3.1, and the rules in AGENTS.md.
 It does not grant approval or expand the work beyond requirements and UML through
-Requirement Analysis. Humans decide whether to approve the draft.
+Requirement Analysis.
 
 Agents MUST NOT amend human-approved files directly. Proposed changes to approved
 artifacts MUST follow the change process in METHOD.md §6: a change request,
@@ -117,16 +104,16 @@ change; this constitution does not replace it.
 
 Compliance review MUST check gate approval, file ownership, source citations,
 parallel-work dependencies, sensitive-data handling, human peer review of every PR,
-and the prohibition on agent Git writes. The Orchestrator's step summaries MUST expose changed files, open
-questions, and the next gate for human review.
+and the prohibition on agent Git writes. The Orchestrator's step summaries MUST
+expose changed files, open questions, and the next gate for human review.
 
 Version numbers describe document revisions using MAJOR.MINOR.PATCH: incompatible
 rule changes increment MAJOR; additions or expanded guidance increment MINOR;
 wording corrections increment PATCH. This is a document-versioning convention,
 not an additional project principle or permission to change approved rules.
-Version 0.2.0 adds human peer review to the draft; ratification remains pending.
+Version 1.0.0 is the version ratified at gate G0.
 
 Source: METHOD.md §2 and §3.1; AGENTS.md, Gates, Files, Git, Data, and Orchestrator.
 The amendment process is incorporated by AGENTS.md's reference to METHOD.md §6.
 
-**Version**: 0.2.0 | **Ratified**: TODO(RATIFICATION_DATE): pending human approval | **Last Amended**: 2026-10-26
+**Version**: 1.0.0 | **Ratified**: 2026-10-27 | **Last Amended**: 2026-10-27
