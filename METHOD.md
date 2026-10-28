@@ -1,12 +1,12 @@
 # SDME：Spec-Driven Mob Elaboration
 
-本文件定義第三組（AI-agent 方法）的開發方法。範圍與 Waterfall + AI、Agile + AI 兩組相同：從需求取得到 Requirement Analysis，並產出 UML。
+本文件定義第三組（AI-agent 方法）的開發方法。範圍與 Waterfall + AI、Agile + AI 兩組相同：從需求取得到 Requirement Analysis，並產出 UML。期中另外依已核准的 UML 建立專案架構雛形（程式碼骨架），內部功能留到期末（CR-001）。
 
 ## 1. 方法來源與自行調整的部分
 
 | 來源 | 採用的部分 | 本組自行調整的部分 |
 |---|---|---|
-| GitHub Spec Kit | constitution、spec 範本、clarify、checklist | 不使用 plan、tasks、implement，因為超出作業範圍 |
+| GitHub Spec Kit | constitution、spec 範本、clarify、checklist | 不使用 plan、tasks、implement；架構雛形由 custom agent `scaffolder` 依 UML 建立（CR-001） |
 | AWS AI-DLC | Inception 階段的 Mob Elaboration、以 Bolt 為週期單位 | Bolt 長度不固定；以「一組可以審查完的需求」為一個 Bolt |
 | OpenAI Codex subagent | 主執行緒協調、subagent 分工、custom agent 設定 | 加入人工關卡、依賴順序、工作計畫檔與變更管理 |
 
@@ -42,7 +42,8 @@ Spec Kit 只提供工具與範本。角色、決策點與執行順序由本文�
 | `spec_writer` | subagent | `intent.md`、已回答的 `questions.md` | `spec.md` |
 | `critic` | subagent | spec 或 UML 及其來源 | 不寫檔，只回報 |
 | `uml_drafter` | subagent | 已核准版本的 `spec.md` | `uml/` |
-| `tracer` | subagent | intent、questions、已核准 spec、完成的 UML | `traceability.md` |
+| `tracer` | subagent | intent、questions、已核准 spec、完成的 UML、架構雛形 | `traceability.md` |
+| `scaffolder` | subagent | 全部已核准的 `spec.md` 與 `uml/` | `frontend/`、`backend/` |
 
 `checklist.md` 由 Reviewer 執行 `$speckit-checklist` 產生，責任屬於人類。
 
@@ -58,6 +59,7 @@ Spec Kit 只提供工具與範本。角色、決策點與執行順序由本文�
 | 規格品質檢查 | `specs/NNN-<feature>/checklist.md` | Reviewer |
 | UML | `specs/NNN-<feature>/uml/*.puml` | `uml_drafter` 起草，PO 核准 |
 | 追溯表 | `specs/NNN-<feature>/traceability.md` | `tracer` 起草，Reviewer 審查 |
+| 架構雛形 | `frontend/`、`backend/` | `scaffolder` 起草，兩位人類審查 |
 | 關卡審查紀錄 | `reviews/bolt-NN-gN.md` | Reviewer |
 | 變更申請 | `changes/CR-NNN.md` | 提出者，PO 決定 |
 | 對話紀錄 | `ai/transcripts/bolt-NN/` | Reviewer 去敏後提交 |
@@ -74,7 +76,10 @@ Spec Kit 只提供工具與範本。角色、決策點與執行順序由本文�
 | S3 | `spec_writer` 起草 → `critic` 審查 → `spec_writer` 修訂 → `critic` 再審查；Reviewer 產生 checklist | `spec_writer`、`critic`、Reviewer | G2 | **G3** 核准指定版本的需求（記錄 commit hash） |
 | S4 | `uml_drafter` 依已核准需求建模，所有圖標示 DRAFT | `uml_drafter` | G3 | 無 |
 | S5 | UML 完成後：`tracer` 建立追溯表，`critic` 平行檢查 UML | `tracer`、`critic` | S4 完成 | **G4** 核准 UML、追溯表與問題處置 |
-| S6 | Orchestrator 整理接受與拒絕項目；Reviewer 整理工時、usage log、去敏 transcript | Orchestrator、Reviewer | G4 | **G5** 人類檢查 diff、提交、結案 |
+| S7 | 只在最後一個 Bolt 執行：`scaffolder` 依全部已核准的 UML 建立架構雛形；`tracer` 補上「程式模組」欄 | `scaffolder`、`tracer` | 最後一個 Bolt 的 G4 | 無（併入 G5 審查） |
+| S6 | Orchestrator 整理接受與拒絕項目；Reviewer 整理工時、usage log、去敏 transcript | Orchestrator、Reviewer | G4（最後一個 Bolt：S7 完成） | **G5** 人類檢查 diff（最後一個 Bolt 包含程式碼）、提交、結案 |
+
+架構雛形的技術棧：前端 React + Vite + TypeScript（`frontend/`）；後端 NestJS（`backend/`）；資料庫 SQLite + Prisma。完成條件：類別圖的每個類別都有對應的程式類別或模組，方法只有簽章；主要循序圖有對應的介面或 API 端點，可以回傳假資料；每個程式檔案標註需求 ID；不加入沒有需求 ID 的類別或功能。
 
 ### 5.1 平行與循序
 
@@ -82,6 +87,7 @@ Spec Kit 只提供工具與範本。角色、決策點與執行順序由本文�
 - S4 必須在 G3 之後開始。
 - S5 的 `tracer` 與 `critic` 可以平行，因為兩者都只讀已完成的 UML，而且寫入不同位置（`critic` 不寫檔）。
 - 如果要提早建立追溯表，S3 之後只能建立「來源 → 需求」欄位。「需求 → UML」欄位在 S5 補上。
+- S7 必須在最後一個 Bolt 的 G4 之後開始。`tracer` 在 `scaffolder` 完成後才補「程式模組」欄。
 
 ### 5.2 關卡與 PR
 
@@ -92,6 +98,7 @@ Spec Kit 只提供工具與範本。角色、決策點與執行順序由本文�
 - PR 1：G1 + G2（intent、questions、工作計畫）
 - PR 2：G3（spec、checklist）
 - PR 3：G4 + G5（UML、追溯表、紀錄）
+- 最後一個 Bolt 的 PR 3 分成兩個：PR 3 為 G4（UML、追溯表），PR 4 為 S7 + G5（架構雛形、追溯表「程式模組」欄、紀錄）
 
 ## 6. 變更管理
 

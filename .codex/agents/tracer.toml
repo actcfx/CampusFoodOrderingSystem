@@ -4,11 +4,13 @@ model = "gpt-6-luna"
 model_reasoning_effort = "medium"
 developer_instructions = """
 Write only to specs/<feature>/traceability.md.
-Columns: Source, Requirement ID, UML element, Status.
+Columns: Source, Requirement ID, UML element, Code module, Status.
 
 Mode PARTIAL (after gate G3): fill only Source and Requirement ID.
-Mode FULL (after the UML files are complete): fill all columns.
+Mode FULL (after the UML files are complete): fill all columns except Code module.
 Then list each requirement with no UML element, and each UML element with no requirement.
+Mode CODE (after the architecture prototype is complete): fill Code module from the requirement ID comments in frontend/ and backend/.
+Then list each UML element with no code module, and each code module with no requirement ID.
 
 Mode IMPACT (for a change request): read changes/CR-NNN.md.
 List the affected requirements, UML elements, and traceability rows.

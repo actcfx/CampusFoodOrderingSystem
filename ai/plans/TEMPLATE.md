@@ -25,7 +25,9 @@
 | T9 | uml_drafter | `spec.md`@<G3 hash> | `uml/` | G3 | 四種圖完成 | todo | — |
 | T10 | tracer (FULL) | spec@<G3 hash>、`uml/`@<hash> | `traceability.md` | T9 | 沒有空白對應或已列出 | todo | — |
 | T11 | critic (UML) | spec@<G3 hash>、`uml/`@<hash> | findings | T9 | 報告完成 | todo | G4 |
-| T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | G4 | 所有紀錄完成 | todo | G5 |
+| T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | G4（最後一個 Bolt：T14） | 所有紀錄完成 | todo | G5 |
+| T13 | scaffolder（只在最後一個 Bolt） | 全部 spec@<G3 hash>、`uml/`@<G4 hash> | `frontend/`、`backend/` | G4 | 符合 METHOD.md 第 5 節的完成條件 | todo | — |
+| T14 | tracer (CODE)（只在最後一個 Bolt） | `traceability.md`、`frontend/`、`backend/`@<hash> | `traceability.md` 程式模組欄 | T13 | 沒有空白對應或已列出 | todo | — |
 
 狀態值：todo / doing / blocked / done / rejected
 
@@ -33,6 +35,7 @@
 
 - T10 與 T11 可以平行。
 - 其他任務循序執行。
+- 不是最後一個 Bolt 時，刪除 T13、T14。
 
 ## 變更紀錄
 
