@@ -1,3 +1,13 @@
+<!--
+Sync Impact Report — temporary amendment review material; remove before committing.
+Version change: 1.0.0 → 1.1.0 (MINOR; scope and prototype rules expanded per CR-001).
+Modified principles: none; Core Principles I–VIII remain unchanged.
+Modified sections: Scope and File Ownership; Workflow and Gates; Governance.
+Added sections: none; prototype rules added within existing sections.
+Removed sections: none.
+Source: changes/CR-001.md, items 1–2, related completion criteria, and PO decisions.
+Follow-up TODOs: none. Other CR-001 artifacts are outside this constitution-only edit.
+-->
 # Campus Food Ordering System Constitution
 
 Status: Ratified at gate G0. Review record: `reviews/bolt-00-g0.md`.
@@ -68,7 +78,30 @@ Source: METHOD.md §3.1.
 ## Scope and File Ownership
 
 The project scope covered here is requirements acquisition through Requirement Analysis,
-including UML. Implementation is outside this scope.
+including UML and an architecture prototype (code skeleton) built from approved UML.
+Implementation of internal functionality is outside the midterm scope.
+
+Source of scope amendment: changes/CR-001.md, items 1–2 and PO acceptance.
+
+The architecture prototype MUST be built only once, from all approved UML, by the
+`scaffolder` agent. It MUST write only to `frontend/` and `backend/`. Spec Kit's
+plan, tasks, and implement workflows MUST NOT be used for this prototype.
+
+Source: changes/CR-001.md, decided agent, directory, and one-time prototype items.
+
+The prototype stack MUST be React + Vite + TypeScript for the frontend, NestJS
+(TypeScript) for the backend, and SQLite + Prisma for the database.
+
+Source: changes/CR-001.md, decided technology stack item.
+
+Every class in the approved class diagrams MUST have a corresponding code class or
+module, with method signatures only and no internal functionality implementation.
+The main sequence diagrams MUST have corresponding interfaces or API endpoints;
+these MAY return mock data. Each code file MUST cite its corresponding requirement
+IDs (`FR-nn`) in comments. Classes or features without a requirement ID MUST NOT
+be added.
+
+Source: changes/CR-001.md, architecture prototype completion criteria and decided agent item.
 
 Artifact ownership and output paths MUST follow METHOD.md §3.2 and §4, covering
 both agent and human responsibilities.
@@ -89,12 +122,24 @@ final traceability MUST wait for completed UML.
 
 Source: AGENTS.md, Orchestrator and Gates; METHOD.md §2.1–§2.4.
 
+The architecture prototype MUST NOT start before G4 of the last requirements Bolt
+is approved; all requirements Bolts MUST have completed G4. It MUST use only approved
+UML. The final Bolt's G5 review MUST include the prototype code diff. The tracer MUST
+add the code-module traceability column only after the prototype is complete, linking
+each class or module to its requirement IDs and UML elements.
+
+Source: changes/CR-001.md, items 5 and 7 and decided one-time prototype item.
+
 ## Governance
 
 This constitution states the principles in METHOD.md §2, the human peer review
 rule in METHOD.md §3.1, and the rules in AGENTS.md.
-It does not grant approval or expand the work beyond requirements and UML through
-Requirement Analysis.
+The midterm scope includes requirements through Requirement Analysis, UML, and the
+architecture prototype built only from approved UML. Implementation of internal
+functionality remains outside the midterm scope. This constitution does not grant
+gate approval.
+
+Source of scope amendment: changes/CR-001.md, items 1–2 and PO acceptance.
 
 Agents MUST NOT amend human-approved files directly. Proposed changes to approved
 artifacts MUST follow the change process in METHOD.md §6: a change request,
@@ -111,9 +156,10 @@ Version numbers describe document revisions using MAJOR.MINOR.PATCH: incompatibl
 rule changes increment MAJOR; additions or expanded guidance increment MINOR;
 wording corrections increment PATCH. This is a document-versioning convention,
 not an additional project principle or permission to change approved rules.
-Version 1.0.0 is the version ratified at gate G0.
+Version 1.0.0 is the version ratified at gate G0. Version 1.1.0 expands the scope
+and prototype rules under changes/CR-001.md, item 2 and the PO decisions (MINOR).
 
 Source: METHOD.md §2 and §3.1; AGENTS.md, Gates, Files, Git, Data, and Orchestrator.
 The amendment process is incorporated by AGENTS.md's reference to METHOD.md §6.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-27 | **Last Amended**: 2026-10-27
+**Version**: 1.1.0 | **Ratified**: 2026-10-27 | **Last Amended**: 2026-10-28
