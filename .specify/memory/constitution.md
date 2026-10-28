@@ -1,16 +1,7 @@
-<!--
-Sync Impact Report — temporary amendment review material; remove before committing.
-Version change: 1.0.0 → 1.1.0 (MINOR; scope and prototype rules expanded per CR-001).
-Modified principles: none; Core Principles I–VIII remain unchanged.
-Modified sections: Scope and File Ownership; Workflow and Gates; Governance.
-Added sections: none; prototype rules added within existing sections.
-Removed sections: none.
-Source: changes/CR-001.md, items 1–2, related completion criteria, and PO decisions.
-Follow-up TODOs: none. Other CR-001 artifacts are outside this constitution-only edit.
--->
 # Campus Food Ordering System Constitution
 
-Status: Ratified at gate G0. Review record: `reviews/bolt-00-g0.md`.
+Status: Ratified at gate G0; amended by CR-001. Review records: `reviews/bolt-00-g0.md`,
+`changes/CR-001.md`.
 
 ## Core Principles
 
@@ -83,25 +74,10 @@ Implementation of internal functionality is outside the midterm scope.
 
 Source of scope amendment: changes/CR-001.md, items 1–2 and PO acceptance.
 
-The architecture prototype MUST be built only once, from all approved UML, by the
-`scaffolder` agent. It MUST write only to `frontend/` and `backend/`. Spec Kit's
-plan, tasks, and implement workflows MUST NOT be used for this prototype.
+The architecture prototype MUST follow the agent, stack, directories, and completion
+criteria defined in METHOD.md §3.2 and §5.
 
-Source: changes/CR-001.md, decided agent, directory, and one-time prototype items.
-
-The prototype stack MUST be React + Vite + TypeScript for the frontend, NestJS
-(TypeScript) for the backend, and SQLite + Prisma for the database.
-
-Source: changes/CR-001.md, decided technology stack item.
-
-Every class in the approved class diagrams MUST have a corresponding code class or
-module, with method signatures only and no internal functionality implementation.
-The main sequence diagrams MUST have corresponding interfaces or API endpoints;
-these MAY return mock data. Each code file MUST cite its corresponding requirement
-IDs (`FR-nn`) in comments. Classes or features without a requirement ID MUST NOT
-be added.
-
-Source: changes/CR-001.md, architecture prototype completion criteria and decided agent item.
+Source: changes/CR-001.md.
 
 Artifact ownership and output paths MUST follow METHOD.md §3.2 and §4, covering
 both agent and human responsibilities.
