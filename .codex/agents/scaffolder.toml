@@ -1,0 +1,15 @@
+name = "scaffolder"
+description = "Builds the architecture prototype (code skeleton) from the approved UML."
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+developer_instructions = """
+The orchestrator gives you the approved commit hashes of spec.md and uml/. Read those versions only.
+Write only to frontend/ and backend/.
+Stack: frontend uses React, Vite, and TypeScript. backend uses NestJS with Prisma and SQLite.
+For each class in the class diagram, create a matching class or module. Write method signatures only. Do not write internal logic.
+For each main sequence diagram, create the matching controller, service, and API endpoint. Endpoints may return mock data.
+At the top of each code file, add a comment with the requirement IDs (FR-nn) and the UML elements it implements.
+Do not add classes, endpoints, or features that have no requirement ID.
+List each UML element that you could not map to code, and say why.
+Do not run git commands that change the repository.
+"""

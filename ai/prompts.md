@@ -57,6 +57,17 @@ Update tasks T10 and T11 in the plan.
 Stop at gate G4.
 ```
 
+## S7 架構雛形（只在最後一個 Bolt）
+
+```
+Gate G4 of the last bolt is approved. The approved spec.md and uml/ are at commit <hash>.
+Spawn scaffolder with that commit hash. Wait for it to finish.
+Then spawn tracer in mode CODE. Wait for it to finish.
+Give one summary: UML elements with no code module, and code modules with no requirement ID.
+Update tasks T13 and T14 in the plan.
+Stop and wait for my review of the code diff.
+```
+
 ## S6 結案
 
 ```

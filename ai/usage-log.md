@@ -10,6 +10,10 @@
 | 2026-10-26 | Bolt 00 / 初始化 | Claude Opus 5.5 | （非 Codex agent） | 查 Spec Kit 新版初始化參數；更新 METHOD.md 第 10 節 | `--ai codex --ai-skills` 改為 `--integration codex`；先在暫存資料夾試跑確認不會改到既有檔案 | 無 | +10 | actcfx |
 | 2026-10-26 | Bolt 00 / G0 | Codex（gpt-6.1-sol） | 主執行緒（`$speckit-constitution`） | 依 METHOD.md 第 2 節與 AGENTS.md 起草憲章 v0.1.0；依審查意見修訂為 v0.2.0 | 七條核心原則；v0.2.0 的修訂 | 起草任務描述段落（R-01，INVENTED）；只列 agent 的檔案負責表（R-02、R-03）；錯誤的範圍來源（R-04） | +60 | actcfx |
 | 2026-10-27 | Bolt 00 / G0 | Claude Opus 5.5 | （非 Codex agent） | 審查憲章草稿；起草 G0 審查紀錄與 v1.0.0 核准版本 | R-01 至 R-05、R-07 至 R-09；審查紀錄格式 | R-06（加入 G0 關卡）：G0 只發生一次，由人類執行，維持與 AGENTS.md 一致。審查紀錄初稿把 AI 提出的意見來源寫成「人類」，已改為「AI（Claude）」 | +30 | actcfx |
+| 2026-10-28 | CR-001 / 起草 | Claude Opus 5.5 | （非 Codex agent） | 依期中的要求起草 CR-001；建議技術棧；比較 custom agent 與 Spec Kit implement | CR-001 變更內容與完成條件；技術棧 React + Vite + TypeScript、NestJS、SQLite + Prisma；新增 custom agent `scaffolder`；架構雛形只建立一次 | 無 | +10| actcfx |
+| 2026-10-28 | CR-001 / 修訂（方法文件） | Claude Opus 5.5 | （非 Codex agent） | 依 CR-001 修改 METHOD.md、AGENTS.md、`tracer.toml`、計畫範本、`ai/prompts.md`，新增 `scaffolder.toml` | 方法文件的全部修改（`d13ae5a`） |Claude 未經確認就直接修改已核准的憲章：還原，改由 Codex 起草 |+10| actcfx |
+| 2026-10-28 | CR-001 / 修訂（憲章） | Codex（gpt-6.1-sol） | 主執行緒（`$speckit-constitution`） | 依 CR-001 修訂憲章為 1.1.0 | 範圍加入架構雛形；S7 流程規則（`087bd88`） | 保留了自稱 "remove before committing" 的 Sync Impact Report：刪除；Status 未更新：補上 CR-001；技術棧、agent、目錄與完成條件寫死在憲章：改為引用 METHOD.md §3.2、§5，避免重複（`da9892b`） | +15| actcfx |
+| 2026-10-28 | CR-001 / 審查（憲章） | Claude Opus 5.5 | （非 Codex agent） | 審查 Codex 修訂的憲章 1.1.0 | 三項意見：刪除 Sync Impact Report、更新 Status、細節改為引用 METHOD.md | 無 | +10| actcfx |
 
 ## AI 錯誤案例
 
@@ -25,3 +29,4 @@
 | Bolt | 步驟 | 人類撰寫 | 人類審查 | AI 執行 | 重做 |
 |---|---|---|---|---|---|
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
+| CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ <分鐘>（BSugarSweet） | 1 | 1 |

@@ -8,6 +8,7 @@ Read METHOD.md before you start. These rules apply to the orchestrator and to al
 - Stop at each gate (G1 to G5). Wait for a human answer before you continue.
 - Do not start UML work before gate G3 is approved.
 - Do not start the final traceability check before the UML files are complete.
+- Do not start the architecture prototype before gate G4 of the last bolt is approved.
 
 ## Files
 
