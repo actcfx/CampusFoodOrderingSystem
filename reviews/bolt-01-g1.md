@@ -1,11 +1,11 @@
 # Bolt 01 — Gate G1 審查紀錄
 
 - 關卡：G1（核准範圍與輸入資料）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/intent.md`、`ai/plans/bolt-01-plan.md`（<commit hash>）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/intent.md`、`ai/plans/bolt-01-plan.md`（`f9443ec5c8a6058b1952a97178d520123dcffa03`）
 - 審查人：actcfx（PO）、BSugarSweet（Reviewer）
 - 核准人：BSugarSweet（Reviewer）
-- 開始時間：
-- 結束時間：
+- 開始時間：2026/10/29 14:00
+- 結束時間：2026/10/29 15:00
 
 > R-01 至 R-05 由 AI（Claude Opus 5.5）提出。處置由 PO 填寫，Reviewer 確認。人類審查發現的問題從 H-01 開始編號，來源寫「人類」。
 
