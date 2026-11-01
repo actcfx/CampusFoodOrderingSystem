@@ -4,7 +4,7 @@
 - 分支：`bolt/01-campus-ordering`
 - 開始日期：2026/10/26
 - 計畫建立者：AI（Claude Opus 5.5）起草；之後由 Orchestrator（Codex）更新
-- 計畫確認者：
+- 計畫確認者：BSugarSweet
 
 ## Bolt 切分（G1 決定）
 

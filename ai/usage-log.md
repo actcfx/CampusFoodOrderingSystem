@@ -31,4 +31,4 @@
 |---|---|---|---|---|---|
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
 | CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ <分鐘>（BSugarSweet） | 1 | 1 |
-| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ <分鐘>（BSugarSweet） |  2 | 0 |
+| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5 (BSugarSweet） | 2 | 0 |
