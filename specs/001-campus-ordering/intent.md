@@ -3,7 +3,7 @@
 - 撰寫者：PO（actcfx）
 - 整理協助：AI（Claude Opus 5.5）
 - 日期：2026-10-26
-- 狀態：待 G1 核准
+- 狀態：已核准（G1，2026-11-01，`reviews/bolt-01-g1.md`）
 
 本文件是三組共用的需求輸入。Waterfall + AI 組與 Agile + AI 組使用相同內容。
 

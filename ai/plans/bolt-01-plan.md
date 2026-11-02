@@ -18,7 +18,7 @@
 
 | 任務 | Agent / 人類 | 輸入與版本 | 交付物 | 依賴 | 完成條件 | 狀態 | 人工停止點 |
 |---|---|---|---|---|---|---|---|
-| T1 | PO | 原始需求 | `intent.md` | 無 | PO 確認內容 | doing | G1 |
+| T1 | PO | 原始需求 | `intent.md` | 無 | PO 確認內容 | done | G1 |
 | T2 | elicitor | `intent.md`@<hash> | `questions.md` | G1 | 每題都有假設 | todo | — |
 | T3 | PO | `questions.md` | PO 回答 | T2 | 每題都有回答或處置 | todo | G2 |
 | T4 | spec_writer | intent、questions@<hash> | `spec.md` | G2 | 每條需求都有來源 | todo | — |
@@ -45,5 +45,5 @@
 
 | 日期 | 變更 | 確認者 |
 |---|---|---|
-| 2026-10-25 | 建立計畫 | |
-| 2026-10-29 | 依 G1 決定改為單一 Bolt，範圍改為全部需求；依 CR-001 新增 T13、T14 | |
+| 2026-10-25 | 建立計畫 | BSugarSweet |
+| 2026-10-29 | 依 G1 決定改為單一 Bolt，範圍改為全部需求；依 CR-001 新增 T13、T14 | BSugarSweet |
