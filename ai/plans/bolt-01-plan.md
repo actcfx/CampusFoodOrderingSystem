@@ -27,7 +27,7 @@ I-1.1、I-1.2、I-2.1 至 I-2.8
 | 任務 | Agent / 人類 | 輸入與版本 | 交付物 | 依賴 | 完成條件 | 狀態 | 人工停止點 |
 |---|---|---|---|---|---|---|---|
 | T1 | PO | 原始需求 | `intent.md` | 無 | PO 確認內容 | doing | G1 |
-| T2 | elicitor | `intent.md`@38391860eb7cb8186dbc9f35bb76d3e30de47f1b（全部項目，依該版本 G1 決議） | `questions.md` | G1 | 每題都有假設 | done | — |
+| T2 | elicitor | `intent.md`@<hash> | `questions.md` | G1 | 每題都有假設 | todo | — |
 | T3 | PO | `questions.md` | PO 回答 | T2 | 每題都有回答或處置 | todo | G2 |
 | T4 | spec_writer | intent、questions@<hash> | `spec.md` | G2 | 每條需求都有來源 | todo | — |
 | T5 | critic (SPEC) | `spec.md`@<hash> | findings | T4 | 報告完成 | todo | — |
@@ -51,5 +51,3 @@ I-1.1、I-1.2、I-2.1 至 I-2.8
 | 日期 | 變更 | 確認者 |
 |---|---|---|
 | 2026-10-25 | 建立計畫 | |
-| 2026-11-02 | 依人類指示啟動 T2；輸入固定為 38391860eb7cb8186dbc9f35bb76d3e30de47f1b 的 intent.md，依該版本 G1 決議處理全部項目。工作目錄的 intent 與計畫範圍較舊；本次僅更新 T2 狀態與紀錄，不改寫已核准範圍。完成後停於 G2。 | 待人工審查 |
-| 2026-11-02 | elicitor 完成 questions.md：24 題（Q-01 至 Q-24）、24 個未確認 ASSUMPTION；每題含來源、重要性與空白 PO answer。T2：doing → done；T3 仍待 PO 回答與假設處置，停於 G2，尚未核准。 | 待人工審查 |
