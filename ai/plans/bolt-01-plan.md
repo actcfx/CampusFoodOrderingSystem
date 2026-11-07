@@ -20,7 +20,7 @@
 |---|---|---|---|---|---|---|---|
 | T1 | PO | 原始需求 | `intent.md` | 無 | PO 確認內容 | done | G1 |
 | T2 | elicitor | `intent.md`@38391860eb7cb8186dbc9f35bb76d3e30de47f1b | `questions.md` | G1 | 每題都有假設 | done | — |
-| T3 | PO | `questions.md` | PO 回答 | T2 | 每題都有回答或處置 | doing | G2 |
+| T3 | PO | `questions.md` | PO 回答 | T2 | 每題都有回答或處置 | done | G2 |
 | T4 | spec_writer | intent、questions@<hash> | `spec.md` | G2 | 每條需求都有來源 | todo | — |
 | T5 | critic (SPEC) | `spec.md`@<hash> | findings | T4 | 報告完成 | todo | — |
 | T6 | spec_writer | findings | `spec.md` 修訂 | T5 | 每個 finding 都有處置 | todo | — |
@@ -48,3 +48,4 @@
 | 2026-10-25 | 建立計畫 | BSugarSweet |
 | 2026-10-29 | 依 G1 決定改為單一 Bolt，範圍改為全部需求；依 CR-001 新增 T13、T14 | BSugarSweet |
 | 2026-11-08 | T2 done：elicitor 於 2026-11-02 完成 `questions.md`（24 題、24 個 ASSUMPTION），輸入為 G1 核准的 intent.md@3839186。該 commit（`d28868f`）誤建在 `main` 上，內容原樣複製到本分支。T3 doing，停在 G2 | 待人工審查 |
+| 2026-11-08 | T3 done：PO 回答全部 24 題，G2 審查補充 R-03 至 R-12（`questions.md`@db1a766）。等待 G2 核准 | 待人工審查 |
