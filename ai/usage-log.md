@@ -4,7 +4,7 @@
 
 | 日期 | Bolt / 步驟 | 工具與模型 | Agent | 要求內容（摘要） | 接受的內容 | 拒絕的內容與理由 | 時間（節省 + / 損失 −，分鐘） | 記錄人 |
 |---|---|---|---|---|---|---|---|---|
-| 2026-10-25 | Bolt 01 / S1 | Claude Opus 5.5 | （非 Codex agent） | 把 PO 的 4 項需求整理成 intent.md 並編號；起草 Bolt 01 計畫與 Bolt 切分建議 | intent.md 的格式與 24 個需求編號（I-1.1 至 I-4.6）；Bolt 01 計畫的任務表 | 「整理協助」那行的說明「只做格式整理與編號，沒有新增需求」，已檢查確認，故刪除；Bolt 切分建議 <待 G1 決定> |+20| actcfx |
+| 2026-10-25 | Bolt 01 / S1 | Claude Opus 5.5 | （非 Codex agent） | 把 PO 的 4 項需求整理成 intent.md 並編號；起草 Bolt 01 計畫與 Bolt 切分建議 | intent.md 的格式與 24 個需求編號（I-1.1 至 I-4.6）；Bolt 01 計畫的任務表 | 「整理協助」那行的說明「只做格式整理與編號，沒有新增需求」，已檢查確認，故刪除；Bolt 切分建議（3 個 Bolt）：G1 改為 1 個 Bolt，見 `reviews/bolt-01-g1.md` R-01 |+20| actcfx |
 | 2026-10-25 | Bolt 00 / 初始化 | Claude Opus 5.5 | （非 Codex agent） | 檢查 repo 有哪些檔案不該上 GitHub；對照作業說明確認 Git 規則 | 所有檔案可提交；建議新增 `.gitignore` | 無 |  +5 | actcfx |
 | 2026-10-25 | Bolt 00 / 初始化 | Claude Opus 5.5 | （非 Codex agent） | 修改 METHOD.md 第 9 節與計畫範本的輸入來源 | 「訪談筆記」改為 `intent.md`／「PO 原始需求」 | 無 | 0 | actcfx |
 | 2026-10-26 | Bolt 00 / 初始化 | Claude Opus 5.5 | （非 Codex agent） | 查 Spec Kit 新版初始化參數；更新 METHOD.md 第 10 節 | `--ai codex --ai-skills` 改為 `--integration codex`；先在暫存資料夾試跑確認不會改到既有檔案 | 無 | +10 | actcfx |
@@ -14,6 +14,9 @@
 | 2026-10-28 | CR-001 / 修訂（方法文件） | Claude Opus 5.5 | （非 Codex agent） | 依 CR-001 修改 METHOD.md、AGENTS.md、`tracer.toml`、計畫範本、`ai/prompts.md`，新增 `scaffolder.toml` | 方法文件的全部修改（`d13ae5a`） |Claude 未經確認就直接修改已核准的憲章：還原，改由 Codex 起草 |+10| actcfx |
 | 2026-10-28 | CR-001 / 修訂（憲章） | Codex（gpt-6.1-sol） | 主執行緒（`$speckit-constitution`） | 依 CR-001 修訂憲章為 1.1.0 | 範圍加入架構雛形；S7 流程規則（`087bd88`） | 保留了自稱 "remove before committing" 的 Sync Impact Report：刪除；Status 未更新：補上 CR-001；技術棧、agent、目錄與完成條件寫死在憲章：改為引用 METHOD.md §3.2、§5，避免重複（`da9892b`） | +15| actcfx |
 | 2026-10-28 | CR-001 / 審查（憲章） | Claude Opus 5.5 | （非 Codex agent） | 審查 Codex 修訂的憲章 1.1.0 | 三項意見：刪除 Sync Impact Report、更新 Status、細節改為引用 METHOD.md | 無 | +10| actcfx |
+| 2026-10-29 | Bolt 01 / G1 | Claude Opus 5.5 | （非 Codex agent） | 依 G1 決定（1 個 Bolt）起草 intent.md 的 I-5 編號、更新計畫範圍與 T13/T14、起草 G1 審查紀錄 | I-5.1、I-5.2 編號；計畫改為單一 Bolt 並新增 T13、T14；G1 審查紀錄 R-01 至 R-05 | R-03 原本建議「延後到 S2 由 elicitor 提問」：PO 已知道「先」的意思（暫定不做），直接說明，改為接受並在 intent.md 補上說明 | +10 | actcfx |
+| 2026-11-07 | Bolt 01 / 流程改善 | Claude Opus 5.5 | （非 Codex agent） | 減少人工往返：`ai/prompts.md` S2 改為一張表列出所有問題、S3 的 T4 至 T7 一次執行只停在 G3；新增 `scripts/gate.sh`（填審查紀錄的 hash 與時間）、`scripts/timelog.sh`（工時）、`scripts/redact-transcript.sh`（去敏第一輪，只輸出行號）。PO 決定：除了 Git 寫入、關卡核准、簽名與去敏最後確認以外，這三支腳本由 Claude 執行，包含寫入 Reviewer 負責的 `reviews/` 與本檔。這偏離 METHOD.md §3.2 的檔案負責表 | 全部| 無| +10| actcfx |
+| 2026-11-08 | Bolt 01 / S2、G2 | Claude Opus 5.5 | （非 Codex agent） | 把 elicitor 的 `questions.md` 帶回 bolt 分支；整理 24 題一覽表；檢查 PO 回答並提出 G2 findings；依 PO 在對話中的回答填入 `questions.md` 的「G2 補充」；執行 `gate.sh`、`timelog.sh`；起草 G2 審查紀錄；更新計畫 T2、T3 | R-01 至 R-12；`questions.md` 的 G2 補充；G2 審查紀錄草稿；計畫 T2、T3 done | 一開始判斷 S2 還沒開始、提議重跑 elicitor：elicitor 已完成，S2 是在等 PO 回答| ＋5| actcfx |
 
 ## AI 錯誤案例
 
@@ -30,3 +33,4 @@
 |---|---|---|---|---|---|
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
 | CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ <分鐘>（BSugarSweet） | 1 | 1 |
+| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5 (BSugarSweet） | 2 | 0 |
