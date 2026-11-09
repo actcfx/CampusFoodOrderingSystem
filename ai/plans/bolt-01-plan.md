@@ -49,3 +49,4 @@
 | 2026-10-29 | 依 G1 決定改為單一 Bolt，範圍改為全部需求；依 CR-001 新增 T13、T14 | BSugarSweet |
 | 2026-11-08 | T2 done：elicitor 於 2026-11-02 完成 `questions.md`（24 題、24 個 ASSUMPTION），輸入為 G1 核准的 intent.md@3839186。該 commit（`d28868f`）誤建在 `main` 上，內容原樣複製到本分支。T3 doing，停在 G2 | 待人工審查 |
 | 2026-11-08 | T3 done：PO 回答全部 24 題，G2 審查補充 R-03 至 R-12（`questions.md`@db1a766）。等待 G2 核准 | 待人工審查 |
+| 2026-11-09 | T4–T7 重設為 todo：Claude（Claude Code）誤以 Claude subagent 代替 Codex 執行 S3（spec_writer、critic 三輪），違反 METHOD.md 3.2 的角色分工。該產出作廢、未進入 repo；S3 改由 Codex Orchestrator 重跑 | 待人工審查 |
