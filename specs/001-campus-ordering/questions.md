@@ -1,6 +1,6 @@
 # Bolt 01 澄清問題與假設
 
-- 狀態：DRAFT；待 PO 逐題回答與處置假設，尚未通過 G2。
+- 狀態：DONE
 - 日期：2026-11-02
 - 輸入：`specs/001-campus-ordering/intent.md` @ `38391860eb7cb8186dbc9f35bb76d3e30de47f1b`。
 - G1 依據：同一版本的 `reviews/bolt-01-g1.md`；採單一 Bolt，涵蓋全部 intent 項目。
