@@ -19,8 +19,9 @@
 | 2026-11-08 | Bolt 01 / S2、G2 | Claude Opus 5.5 | （非 Codex agent） | 把 elicitor 的 `questions.md` 帶回 bolt 分支；整理 24 題一覽表；檢查 PO 回答並提出 G2 findings；依 PO 在對話中的回答填入 `questions.md` 的「G2 補充」；執行 `gate.sh`、`timelog.sh`；起草 G2 審查紀錄；更新計畫 T2、T3 | R-01 至 R-12；`questions.md` 的 G2 補充；G2 審查紀錄草稿；計畫 T2、T3 done | 一開始判斷 S2 還沒開始、提議重跑 elicitor：elicitor 已完成，S2 是在等 PO 回答| ＋5| actcfx |
 | 2026-11-09 | Bolt 01 / S3（作廢） | Claude Opus 5.5 | （非 Codex agent；以 Claude subagent 代替 spec_writer、critic） | PO 要求「繼續 S3」；Claude 自行擔任 Orchestrator，派 Claude subagent 起草 `spec.md`、critic 審查三輪、spec_writer 修訂兩輪，並更新計畫 T4–T7 | PO 在過程中的回答（整理為 G3-01 至 G3-14，之後記入 `reviews/bolt-01-g3.md`） | 全部 S3 產出：違反 METHOD.md §3.2，S3 應由 Codex 的 spec_writer、critic 執行；`spec.md` 未進入 repo，計畫 T4–T7 改回 todo（`1c76a51`），S3 由 Codex 重跑。見下方 AI 錯誤案例 | −20 | actcfx |
 | 2026-11-09 | Bolt 01 / S3 | Claude Opus 5.5 | （非 Codex agent） | 確認 agent worktree 落後遠端、請人類更新；說明 Codex 需在 agent worktree 啟動（workspace-write 只能寫啟動目錄）；整理 PO 回答筆記；建議 commit 前先處理 `questions.md` 標頭 | 全部 | 無 | +5 | actcfx |
-| 2026-11-09 至 2026-11-10 | Bolt 01 / S3 T4–T7 | Codex（gpt-6.1-sol） | 主執行緒、spec_writer、critic | 依 `ai/prompts.md` S3 起草並審查 `spec.md`（輸入 questions.md@db1a766）；依 G3 前 PO 決定修訂四次；critic 共五輪：F-01 至 F-08、F-07 至 F-09、F-10 至 F-13、F-14 至 F-15、F-16 | `spec.md`（blob `92a1b53`）；A 組 F-01 至 F-04、F-09、F-10、F-14 的修正；B 組依 G3-01 至 G3-24 修訂；F-08、F-15、F-16 及其他 4 項待確認事項列入 Unconfirmed | 無。第一次在主工作目錄啟動時，Codex 判斷無法寫入 agent worktree 而停止（正確行為，非錯誤） | ＋30 | actcfx |
-| 2026-11-09 至 2026-11-10 | Bolt 01 / G3 | Claude Opus 5.5 | （非 Codex agent） | 整理 Codex 各輪摘要給 PO；對 B 組提出建議；依 PO 回答起草 `reviews/bolt-01-g3.md`（G3-01 至 G3-24、F-01 至 F-16 處置）；提供每輪給 Codex 的指令 | G3 審查紀錄草稿；F-07、F-11、F-12、F-13 的建議（G3-18、G3-20 至 G3-22）；用 G3-nn 作為需求來源的記錄方式 | 第一版 G3 表把 PO 原文的錯字照抄並將部分回答寫成轉述：PO 要求改正錯字並逐字引用；「不列出」解讀為隱藏無上架品項的商家：PO 改為列出並放最下面（G3-07）；「停用商家」的意思與 PO 的理解不一致，重新提問後 PO 確認保留並新增刪除品項（G3-23、G3-24） | +20 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / S3 T4–T7 | Codex（gpt-6.1-sol） | 主執行緒、spec_writer、critic | 依 `ai/prompts.md` S3 起草並審查 `spec.md`（輸入 questions.md@db1a766）；依 G3 前 PO 決定與 checklist 審查修訂六次；critic 共七輪：F-01 至 F-08、F-07 至 F-09、F-10 至 F-13、F-14 至 F-15、F-16、F-17、最後一輪無新問題 | `spec.md`（blob `41204bb`，commit `32e10ee`）；A 組 F-01 至 F-04、F-09、F-10、F-14 及 checklist 4 項的修正；B 組依 G3-01 至 G3-26 修訂；F-08、F-15、F-16 及其他 4 項待確認事項列入 Unconfirmed | 無。第一次在主工作目錄啟動時，Codex 判斷無法寫入 agent worktree 而停止（正確行為，非錯誤） | ＋30 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / G3 | Claude Opus 5.5 | （非 Codex agent） | 整理 Codex 各輪摘要給 PO；對 B 組提出建議；依 PO 回答起草 `reviews/bolt-01-g3.md`（G3-01 至 G3-26、F-01 至 F-17 處置）；提供每輪給 Codex 的指令；逐項檢查 Reviewer 已勾選的 `checklist.md`；起草 PR 2 內文 | G3 審查紀錄草稿；F-07、F-11、F-12、F-13 的建議（G3-18、G3-20 至 G3-22）；F-17 的建議（G3-25）；用 G3-nn 作為需求來源的記錄方式；checklist 檢查找出的 CHK006、CHK008、CHK016、CHK023 四項問題（交 Codex 修正）；PR 2 內文 | 第一版 G3 表把 PO 原文的錯字照抄並將部分回答寫成轉述：PO 要求改正錯字並逐字引用；「不列出」解讀為隱藏無上架品項的商家：PO 改為列出並放最下面（G3-07）；「停用商家」的意思與 PO 的理解不一致，重新提問後 PO 確認保留並新增刪除品項（G3-23、G3-24）；PR 內文預先勾選「檢查」各項：PO 指出應由核准者勾選，改為不勾 | +20 | actcfx |
+| 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 匯入交接說明與記憶；依 `~/.codex/sessions` 時間戳補記 S3 的 AI 時間、Claude 重做時間與 G3 審查時間（`scripts/timelog.sh add`）；更新本檔工時表 | S3 AI 22 分鐘、重做 27 分鐘、G3 審查 30 分鐘；PO 回答 G3-nn 的 20 分鐘為 PO 估計 | 未依交接說明在 S3 前後執行 `timelog.sh start/stop`，只能事後由 session 紀錄回推 | +10（待確認） | actcfx |
 
 ## AI 錯誤案例
 
@@ -44,5 +45,7 @@
 |---|---|---|---|---|---|
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
 | CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ 15（BSugarSweet） | 1 | 1 |
-| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5 (BSugarSweet） | 2 | 0 |
+| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5（BSugarSweet） | 2 | 0 |
 | 01 | G2 澄清問題 | 10 | 21（actcfx）＋ 14（BSugarSweet） | 1 | 0 |
+| 01 | S3 需求起草與審查 | 0 | 0 | 22 | 27（Claude 誤代跑 S3，AI 時間） |
+| 01 | G3 核准需求 | 0 | 50（actcfx）＋ 未記錄（BSugarSweet） | 0 | 0 |
