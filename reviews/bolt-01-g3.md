@@ -1,7 +1,7 @@
 # Bolt 01 — Gate G3 審查紀錄
 
 - 關卡：G3（核准需求）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/spec.md`（審查中：blob `92a1b53`，尚未 commit；critic 最後審查 blob `8ce1fad`，之後只新增 F-16 的 Unconfirmed 項目；較早版本 `e8389b0`、`537e24d`、`9fd11ed`、`8336e29`；核准版本待填）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/spec.md`、`specs/001-campus-ordering/checklist.md` @ `<待 commit 後填入>`（spec blob `41204bb`，critic 已審查此版本；先前 checklist 審查版本為 `25b0155`，spec blob `92a1b53`）
 - 審查人：actcfx
 - 核准人：
 - 開始時間：2026/11/10 08:00
@@ -41,6 +41,8 @@
 | G3-22 | 負數減額（F-13） | 用你的建議 | 商家設定減額時拒絕負數，系統中不會存在負數減額 | 補充 G3-02、Q-17 | 確定 |
 | G3-23 | 停用商家與售完品項（F-14） | 喔喔那如果商家停用那就直接不顯示，但是商品售完是商家還在的情況下才顯示 | 保留管理者停用商家的功能（G3-21）。停用的商家及其品項在前台不顯示；「已上架但售完的品項仍顯示」只適用於未停用的商家 | 確認 G3-21 | 確定 |
 | G3-24 | 刪除品項 | 也要能刪除 | 除了下架，商家也可以永久刪除自家品項。已成立訂單中的品項內容依 FR-28 保留，不受刪除影響 | 補充 Q-06（下架仍為可復原的隱藏） | 確定 |
+| G3-25 | 無上架品項商家的排序位置（F-17） | 不論升降冪都放最下面 | 商家清單不論依名稱升冪或降冪排序，沒有上架品項的商家一律排在有上架品項的商家之後 | 補充 G3-07、G3-09 | 確定 |
+| G3-26 | 全站搜尋的價格排序與篩選 | 要，全站搜尋也能用 | 全站搜尋結果中的品項也提供價格升降冪排序，以及以基礎單價 P 為準的金額範圍篩選 | 補充 Q-02〈R-06〉、G3-08 至 G3-10 | 確定 |
 
 ### 待 PO 確認
 
@@ -70,6 +72,11 @@
 | F-14 停用商家的售完品項仍顯示 | critic 第四輪 | CONFLICT | 接受 | A 組，PO 於 G3-23 確認停用優先；spec_writer 已修 FR-06，critic 第五輪確認 |
 | F-15 停用商家能否管理後台 | critic 第四輪 | MISSING | 延後 | B 組：已列入 spec.md 的 Unconfirmed |
 | F-16 刪除仍有待處理子訂單扣庫存的品項 | critic 第五輪 | MISSING | 延後 | B 組：能否刪除、之後拒單如何返還庫存；已列入 spec.md 的 Unconfirmed |
+| Checklist CHK008、CHK016 刪除品項仍在購物車 | Reviewer（AI 協助檢查） | MISSING | 接受 | FR-22 與邊界情境加入「品項已永久刪除」為送單失敗條件（G3-24） |
+| Checklist CHK023 FR-06 未限制刪除 | Reviewer（AI 協助檢查） | CONFLICT | 接受 | FR-06、FR-27 改為引用 Unconfirmed（F-16），不自行決定 |
+| Checklist CHK016 選項加價變動是否需再確認 | Reviewer（AI 協助檢查） | AMBIGUOUS | 接受 | FR-23 明列基礎單價、選項加價、固定減額（Q-19、Q-09、G3-02） |
+| Checklist CHK006 全站搜尋排序與降冪位置 | Reviewer（AI 協助檢查） | AMBIGUOUS | 接受 | 先列入 Unconfirmed；PO 於 G3-25、G3-26 決定 |
+| F-17 FR-03 底部位置與 Unconfirmed 不一致 | critic 第六輪 | CONFLICT | 接受 | PO 於 G3-25 決定一律放最下面；刪除對應 Unconfirmed |
 
 ## AI 產出的處置
 
