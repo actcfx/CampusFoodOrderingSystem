@@ -21,11 +21,11 @@
 | T1 | PO | 原始需求 | `intent.md` | 無 | PO 確認內容 | done | G1 |
 | T2 | elicitor | `intent.md`@38391860eb7cb8186dbc9f35bb76d3e30de47f1b | `questions.md` | G1 | 每題都有假設 | done | — |
 | T3 | PO | `questions.md` | PO 回答 | T2 | 每題都有回答或處置 | done | G2 |
-| T4 | spec_writer | intent、questions@<hash> | `spec.md` | G2 | 每條需求都有來源 | todo | — |
-| T5 | critic (SPEC) | `spec.md`@<hash> | findings | T4 | 報告完成 | todo | — |
-| T6 | spec_writer | findings | `spec.md` 修訂 | T5 | 每個 finding 都有處置 | todo | — |
-| T7 | critic (SPEC) | `spec.md`@<hash> | findings | T6 | 沒有未處理的 finding | todo | — |
-| T8 | Reviewer | `spec.md`@<hash> | `checklist.md` | T7 | checklist 完成 | todo | G3 |
+| T4 | spec_writer | intent.md、questions.md@db1a76681de3db1b3a94fb95052eba5012f35b56 | `spec.md` | G2 | 每條需求都有來源 | done | — |
+| T5 | critic (SPEC) | `spec.md`@b34cbe8fae470e10f5fc4c85a7cb123fb8f697b6（blob） | findings | T4 | 報告完成 | done | — |
+| T6 | spec_writer | G3-23–G3-24、F-14、spec.md@e8389b0（blob） | `spec.md` 修訂 | T5 | 每個 finding 都有處置 | done | — |
+| T7 | critic (SPEC) | `spec.md`@8ce1fad0d1c26245f3c731c5194e2f88c381c8b9（blob） | findings | T6 | 沒有未處理的 finding | done | — |
+| T8 | Reviewer | `spec.md`@92a1b537ab57db949023e315c98201ba1b1d0664（blob） | `checklist.md` | T7 | checklist 完成 | doing | G3 |
 | T9 | uml_drafter | `spec.md`@<G3 hash> | `uml/` | G3 | 四種圖完成 | todo | — |
 | T10 | tracer (FULL) | spec@<G3 hash>、`uml/`@<hash> | `traceability.md` | T9 | 沒有空白對應或已列出 | todo | — |
 | T11 | critic (UML) | spec@<G3 hash>、`uml/`@<hash> | findings | T9 | 報告完成 | todo | G4 |
@@ -50,3 +50,8 @@
 | 2026-11-08 | T2 done：elicitor 於 2026-11-02 完成 `questions.md`（24 題、24 個 ASSUMPTION），輸入為 G1 核准的 intent.md@3839186。該 commit（`d28868f`）誤建在 `main` 上，內容原樣複製到本分支。T3 doing，停在 G2 | 待人工審查 |
 | 2026-11-08 | T3 done：PO 回答全部 24 題，G2 審查補充 R-03 至 R-12（`questions.md`@db1a766）。等待 G2 核准 | 待人工審查 |
 | 2026-11-09 | T4–T7 重設為 todo：Claude（Claude Code）誤以 Claude subagent 代替 Codex 執行 S3（spec_writer、critic 三輪），違反 METHOD.md 3.2 的角色分工。該產出作廢、未進入 repo；S3 改由 Codex Orchestrator 重跑 | 待人工審查 |
+| 2026-11-09 | T4–T6 done。T7 第二輪 SPEC 審查已完成，F-01 至 F-04 已處理；F-05 至 F-08 待 PO 決定，F-07、F-08 另需補規格交叉引用，F-09 待依 Q-13〈R-12〉釐清商家可見金額。T7 未達完成條件，停在 G3 | 待人工審查 |
+| 2026-11-10 | T6 done：依 G3-01 至 G3-18 修訂規格，G3-19 與五項待確認主題保留於 Unconfirmed。T7 SPEC 再審完成（spec blob 9fd11ed）：F-06、F-07、F-09 已處理，F-05 已套用確定部分，F-08 延後。新增 F-10（A）及 F-11 至 F-13（B），T7 blocked，停在 G3 | 待人工審查 |
+| 2026-11-10 | T6 done：修正 F-10，依 G3-20 至 G3-22 處理 F-11 至 F-13。T7 最終 SPEC 審查完成（spec blob 537e24d），新增 F-14（A，待處置）及 F-15（B，已登錄 Unconfirmed；目前 spec blob e8389b0）。T7 blocked，停在 G3 | 待人工審查 |
+| 2026-11-10 | T6 done：FR-06 依 G3-23 修正 F-14，依 G3-24 加入永久刪除。T7 限定範圍再審（spec blob 8ce1fad）：F-14 已解決，無 A 組待處置，F-16（B）已登錄 Unconfirmed。T7 done，停在 G3 | 待人工審查 |
+| 2026-11-10 | T8 doing：Reviewer 以 `$speckit-checklist` 產生 `checklist.md`（CHK001–CHK023，審查 spec blob 92a1b53），待逐項勾選 | 待人工審查 |
