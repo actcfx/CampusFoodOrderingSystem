@@ -1,7 +1,7 @@
 # Bolt 01 — Gate G3 審查紀錄
 
 - 關卡：G3（核准需求）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/spec.md`、`specs/001-campus-ordering/checklist.md` @ `<待 commit 後填入>`（spec blob `41204bb`，critic 已審查此版本；先前 checklist 審查版本為 `25b0155`，spec blob `92a1b53`）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/spec.md`、`specs/001-campus-ordering/checklist.md` @ `32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e`（spec blob `41204bb`，critic 已審查此版本；先前 checklist 審查版本為 `25b0155`，spec blob `92a1b53`）
 - 審查人：actcfx
 - 核准人：
 - 開始時間：2026/11/10 08:00
