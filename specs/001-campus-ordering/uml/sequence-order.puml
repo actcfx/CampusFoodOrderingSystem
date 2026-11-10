@@ -1,0 +1,45 @@
+@startuml
+title Submit Multi-Merchant Order — Sequence DRAFT
+actor Visitor
+actor Student
+participant "Ordering System" as System
+participant "Merchant Catalog" as Catalog
+participant "Cart" as Cart
+participant "Order Service" as Orders
+participant "Inventory" as Inventory
+
+Visitor -> System: Browse merchants/menu
+System -> Catalog: Find active merchants and listed items
+Catalog --> System: Matching names, items, prices and availability
+Visitor -> Cart: Add item with valid options, quantity and note
+Cart --> Visitor: Cart contents
+
+Student -> System: Sign in and submit cart with pickup times
+System -> Catalog: Revalidate merchants, items, options and prices
+System -> Inventory: Check aggregate quantities for each item
+Inventory --> System: Availability
+alt Any validation fails
+  System --> Student: Explain failure and retain cart
+else Prices or fixed discount changed
+  System --> Student: Show updated breakdown and total
+  Student -> System: Confirm updated amount
+  System -> Orders: Create parent order and merchant suborders
+  Orders -> Inventory: Deduct quantity-mode stock
+  Inventory --> Orders: Deduction result
+  Orders --> System: Parent order ID
+  System --> Student: Submission result and parent order ID
+else All checks pass without amount changes
+  System -> Orders: Create parent order and merchant suborders
+  Orders -> Inventory: Deduct quantity-mode stock
+  Inventory --> Orders: Deduction result
+  Orders --> System: Parent order ID
+  System --> Student: Submission result and parent order ID
+end
+
+note over Visitor,Cart
+  Requirements: FR-03–FR-05, FR-11–FR-15
+end note
+note over Student,Inventory
+  Requirements: FR-16–FR-25
+end note
+@enduml

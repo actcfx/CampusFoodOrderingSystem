@@ -1,0 +1,38 @@
+@startuml
+title Student Ordering Main Flow — Activity DRAFT
+start
+:Browse active merchants and listed items;
+:Search, sort or filter catalog as needed;
+:Select available items and valid options;
+:Add items to cart;
+:Edit quantities, options or notes as needed;
+if (Ready to submit?) then (yes)
+  :Sign in as student;
+  :Set pickup time for each merchant suborder;
+  :Revalidate merchant, item, option, stock and pickup time;
+  if (Any validation fails?) then (yes)
+    :Show reason and retain cart;
+    stop
+  else (no)
+    if (Base price, option surcharge or fixed discount changed?) then (yes)
+      :Show updated breakdown and total;
+      if (Student confirms updated amount?) then (yes)
+      else (no)
+        :Retain cart;
+        stop
+      endif
+    endif
+    :Create one order and one suborder per merchant;
+    :Deduct available quantity-mode stock;
+    :Return parent order ID;
+    :Clear cart;
+  endif
+else (no)
+  :Continue browsing or editing cart;
+endif
+stop
+
+note right
+  Requirements: FR-03–FR-05, FR-11–FR-25
+end note
+@enduml

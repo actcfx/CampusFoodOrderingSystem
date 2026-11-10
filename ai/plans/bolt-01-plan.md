@@ -26,7 +26,7 @@
 | T6 | spec_writer | G3-25–G3-26、F-17、spec.md@52a0944（blob） | `spec.md` 修訂 | T5 | 每個 finding 都有處置 | done | — |
 | T7 | critic (SPEC) | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | findings | T6 | 沒有未處理的 finding | done | — |
 | T8 | Reviewer | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | `checklist.md` | T7 | checklist 完成 | done | G3 |
-| T9 | uml_drafter | `spec.md`@<G3 hash> | `uml/` | G3 | 四種圖完成 | todo | — |
+| T9 | uml_drafter | `spec.md`@32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e | `uml/` | G3 | 四種圖完成 | done | — |
 | T10 | tracer (FULL) | spec@<G3 hash>、`uml/`@<hash> | `traceability.md` | T9 | 沒有空白對應或已列出 | todo | — |
 | T11 | critic (UML) | spec@<G3 hash>、`uml/`@<hash> | findings | T9 | 報告完成 | todo | G4 |
 | T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | T14 | 所有紀錄完成 | todo | G5 |
@@ -58,3 +58,4 @@
 | 2026-11-10 | T6 done：依 G3 checklist 審查修訂四項，spec blob 52a0944。T7 限定範圍 SPEC 再審完成：四項均已修訂，F-17 為 FR-03 通用置底規則與降冪排序待確認事項的衝突；依本輪範圍保留，T7 blocked。T8 仍由 Reviewer 審查，停在 G3 | 待人工審查 |
 | 2026-11-10 | T6 done：依 G3-25、G3-26 修訂 FR-03、FR-05，移除兩項已確認事項。T7 限定範圍 SPEC 再審完成（spec blob 41204bb）：F-17 已解決，無新增 A 組或 B 組問題。T7 done，停在 G3 | 待人工審查 |
 | 2026-11-10 | T8 done：Reviewer 完成 `checklist.md` CHK001–CHK023（spec blob 41204bb，commit `32e10ee`）。等待 G3 核准 | 待人工審查 |
+| 2026-11-10 | T9 done：依 G3 核准版本 `32e10ee` 產出 7 份 DRAFT PlantUML，涵蓋四種圖。S5 尚未開始 | 待人工審查 |

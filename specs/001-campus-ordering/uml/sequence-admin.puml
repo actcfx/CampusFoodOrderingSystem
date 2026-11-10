@@ -1,0 +1,31 @@
+@startuml
+title Administrator Merchant Account Management — Sequence DRAFT
+actor Administrator
+participant "Administration System" as AdminUI
+participant "Ordering System" as System
+participant "Merchant Accounts" as Accounts
+
+Administrator -> AdminUI: Sign in
+Administrator -> AdminUI: Add merchant from basic information
+AdminUI -> System: Create merchant account
+System -> Accounts: Save merchant account
+Accounts --> System: Account created
+System --> AdminUI: Provide account credentials for merchant
+
+Administrator -> AdminUI: Edit or deactivate merchant
+AdminUI -> System: Update merchant account
+System -> Accounts: Save merchant state
+Accounts --> System: Updated merchant
+System --> AdminUI: Show result
+
+Administrator -> AdminUI: Add administrator account
+AdminUI -> System: Create administrator account
+System -> Accounts: Save administrator account
+Accounts --> System: Account created
+System --> AdminUI: Show result
+
+note over Administrator,Accounts
+  Requirements: FR-02, FR-03–FR-05, FR-22, FR-26, FR-32
+  Merchant basic-information fields remain Unconfirmed.
+end note
+@enduml

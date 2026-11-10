@@ -1,0 +1,35 @@
+@startuml
+title Suborder Handling and Student Status Query — Sequence DRAFT
+actor Merchant
+actor Student
+participant "Ordering System" as System
+participant "Suborder" as Suborder
+participant "Inventory" as Inventory
+
+Merchant -> System: Open own suborders
+System -> Suborder: Find suborders for merchant
+Suborder --> System: Own visible suborders and states
+System --> Merchant: Show own suborders
+
+Merchant -> System: Update suborder status
+System -> Suborder: Validate allowed transition and update
+Suborder --> System: Updated status
+System --> Merchant: Show updated status
+
+opt Merchant rejects a pending suborder
+  System -> Inventory: Restore deducted stock when applicable
+  note right of Inventory
+    Restoration after inventory-mode change is Unconfirmed (G3-19).
+  end note
+end
+
+Student -> System: Open or refresh own order details
+System -> Suborder: Read order and visible suborders
+Suborder --> System: IDs, details, amounts and statuses
+System --> Student: Show own order and suborders
+
+note over Merchant,Suborder
+  Requirements: FR-21, FR-26–FR-30, FR-33
+  Merchant visibility and state changes are limited to own suborders.
+end note
+@enduml
