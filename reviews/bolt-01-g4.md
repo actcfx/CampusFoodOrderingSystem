@@ -1,7 +1,7 @@
 # Bolt 01 — Gate G4 審查紀錄
 
 - 關卡：G4（核准 UML、追溯表與問題處置）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/uml/`、`specs/001-campus-ordering/traceability.md`（`f06f40894491b141ed08d1631cb6c338f2f42fbf`）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/uml/`、`specs/001-campus-ordering/traceability.md`（`dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb`，第 2 輪修訂後；第一次審查版本為 `f06f408`）
 - 審查人：actcfx
 - 核准人：
 - 開始時間：2026/11/10 16:43

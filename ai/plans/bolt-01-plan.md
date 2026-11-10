@@ -69,6 +69,6 @@
 | 2026-11-10 | T9 done：依 G3 核准版本 `32e10ee` 產出 7 份 DRAFT PlantUML，涵蓋四種圖。S5 尚未開始 | 待人工審查 |
 | 2026-11-10 | T10、T11 done：依規格 `32e10ee` 與 UML `f14a1578` 完成 FULL 追溯及 UML 審查。追溯缺口見 traceability.md；U-F01 至 U-F15 待 G4 處置。停在 G4 | 待人工審查 |
 | 2026-11-10 | CR-002 已接受（`abdd4fd`）；規格修訂尚未開始，Codex 子代理執行緒已達上限，無法啟動 spec_writer。待修訂及限定範圍 SPEC 再審後，由 PO 重新核准 | 待人工審查 |
-| 2026-11-10 | CR-002 規格修訂及限定範圍 SPEC 再審完成（核准基準 `32e10ee`，修訂版 spec blob `433fc4da96d7c1bb1017bc9d6da9bf30ee93e91b`）。修訂 FR-01、FR-30、FR-32、FR-33 與受影響的主要資料實體，移除已確認的 G3-14、G3-15。critic 在 AMBIGUOUS、MISSING、CONFLICT、INVENTED 四組均無發現。停在 G3，等待 PO 重新核准 | 待 PO 重新核准 |
+| 2026-11-10 | CR-002 規格修訂及限定範圍 SPEC 再審完成（核准基準 `32e10ee`，修訂版 spec blob `433fc4da96d7c1bb1017bc9d6da9bf30ee93e91b`）。修訂 FR-01、FR-30、FR-32、FR-33 與受影響的主要資料實體，移除已確認的 G3-14、G3-15。critic 在 AMBIGUOUS、MISSING、CONFLICT、INVENTED 四組均無發現。停在 G3，等待 PO 重新核准 | actcfx |
 | 2026-11-10 | T15 done。以 spec `35101cc` 及 UML `f14a1578` 為基準，依 G4 接受及部分接受的處置和 CR-002 影響修訂 UML。T16、T17 done。追溯表 10 Mapped、24 Partial、0 Gap；限定範圍審查新增 6 項問題，U-F06、U-F07、U-F11、R-01 尚未完全解決。停在 G4 | 待人工審查 |
 | 2026-11-10 | G4 第二輪。T18 done：依 spec `35101cc` 修訂 F-01 至 F-06（UML diff `ecd8dd9`）；T19、T20 done：F-01 至 F-04 及 F-06 已解決。F-05 尚缺活動圖驗證失敗後的重試路徑（A 組 MISSING）；B 組無新增問題。追溯表 11 Mapped、23 Partial、0 Gap。停在 G4 | 待人工審查 |

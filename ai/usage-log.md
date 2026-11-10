@@ -24,11 +24,11 @@
 | 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 匯入交接說明與記憶；依 `~/.codex/sessions` 時間戳補記 S3 的 AI 時間、Claude 重做時間與 G3 審查時間（`scripts/timelog.sh add`）；更新本檔工時表 | S3 AI 22 分鐘、重做 27 分鐘、G3 審查 30 分鐘；PO 回答 G3-nn 的 20 分鐘為 PO 估計 | 未依交接說明在 S3 前後執行 `timelog.sh start/stop`，只能事後由 session 紀錄回推 | +10（待確認） | actcfx |
 | 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 檢查全部專案檔案；PO 同意後修正已簽核的 `reviews/bolt-01-g3.md`「AI 產出的處置」第 3 列 | 第 3 列由「四次修訂（critic 共五輪，最終 blob `92a1b53`）」「G3-01 至 G3-24」改為「六次修訂（critic 共七輪，最終 blob `41204bb`）」「G3-01 至 G3-26」，與第 4 行核准版本一致；待 BSugarSweet 於下一個 PR 確認 | 先前自行撰寫 S4 指令，未使用 `ai/prompts.md`，且會接著執行 S5：PO 指出後改用專案指令 | 0 | actcfx |
 | 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 修正 `scripts/timelog.sh` 在 Linux 上 stop、status 失敗（`date -r` 為 macOS 寫法）；依 PO 指示直接修改已核准 `spec.md` 的狀態標頭 | `fmt_epoch` 先用 GNU `date -d @N`，失敗再用 BSD `date -r N`，已在暫存 repo 測試 start、status、stop、summary；`spec.md` 狀態由「Draft，待 G3 審查」改為已核准並註明核准版本 `32e10ee`。PO 決定不開 CR：只改標頭、不改需求內容，偏離 METHOD.md §6；spec blob 因此不再是 `41204bb`，核准內容仍以 commit `32e10ee` 為準 | 無 | +5 | actcfx |
-| 2026-11-10 | Bolt 01 / S4 | Codex（gpt-6.1-sol 主執行緒；uml_drafter gpt-6-luna） | 主執行緒、uml_drafter | 依 `ai/prompts.md` S4 以 G3 核准版本 `32e10ee` 起草 UML | 7 份 DRAFT PlantUML（用例、領域類別、4 張循序、1 張活動）；計畫 T9（`f14a157`） | 無整份拒絕；問題由 S5 critic 提出，於 G4 處置 | ＋10（待確認） | actcfx |
-| 2026-11-10 | Bolt 01 / S5 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（FULL）、critic（UML） | 依 `ai/prompts.md` S5 平行建立追溯表與審查 UML | `traceability.md`；critic U-F01 至 U-F15（`f06f408`） | tracer 把 FR-23 誤標為 Mapped（G4 R-01） | ＋10（待確認） | actcfx |
-| 2026-11-10 | Bolt 01 / CR-002 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（IMPACT）、spec_writer、critic（SPEC） | 影響分析；依 CR-002 修訂 FR-01、FR-30、FR-32、FR-33 並限定範圍再審 | 影響清單；spec 修訂（`35101cc`），critic 無發現 | 第一次派 spec_writer 失敗：同一 Codex 對話的 agent 執行緒已達上限，改用新對話 | ＋5（待確認） | actcfx |
-| 2026-11-10 | Bolt 01 / G4 修訂 | Codex（gpt-6.1-sol；uml_drafter、tracer gpt-6-luna） | 主執行緒、uml_drafter、critic（UML）、tracer（FULL） | 依 G4 處置與 CR-002 修訂 UML 兩輪，每輪限定範圍再審並更新追溯表 | 第 1 輪（`12a2a06`）；第 2 輪修正 U2-F01 至 U2-F06；追溯表 11 Mapped、23 Partial、0 Gap | U3-F01（活動圖重試路徑）由 PO 拒絕；critic 因 `shell_tool = false` 只審查 Orchestrator 轉述的摘錄 | ＋10（待確認） | actcfx |
-| 2026-11-10 | Bolt 01 / S4–G4 | Claude Opus 5.5 | （非 Codex agent） | 填入 `ai/prompts.md` 指令的 hash；預檢 UML；對照 critic 與 tracer 結果；起草 G4 處置建議與審查紀錄、CR-002、CR-002 修訂與 UML 修訂兩輪的 Codex 指令；由 `~/.codex/sessions` 推算 AI 時間 | G4 處置（PO 回答「照你說的」）；R-01、R-02；CR-002 推導規則與商家可見範圍建議；U3-F01 拒絕建議；UML 修訂指令（`ai/prompts.md` 沒有對應指令） | 第一次回答 S4 時自行撰寫指令且會接著執行 S5：PO 指出應使用 `ai/prompts.md` | ＋20（待確認） | actcfx |
+| 2026-11-10 | Bolt 01 / S4 | Codex（gpt-6.1-sol 主執行緒；uml_drafter gpt-6-luna） | 主執行緒、uml_drafter | 依 `ai/prompts.md` S4 以 G3 核准版本 `32e10ee` 起草 UML | 7 份 DRAFT PlantUML（用例、領域類別、4 張循序、1 張活動）；計畫 T9（`f14a157`） | 無整份拒絕；問題由 S5 critic 提出，於 G4 處置 | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / S5 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（FULL）、critic（UML） | 依 `ai/prompts.md` S5 平行建立追溯表與審查 UML | `traceability.md`；critic U-F01 至 U-F15（`f06f408`） | tracer 把 FR-23 誤標為 Mapped（G4 R-01） | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / CR-002 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（IMPACT）、spec_writer、critic（SPEC） | 影響分析；依 CR-002 修訂 FR-01、FR-30、FR-32、FR-33 並限定範圍再審 | 影響清單；spec 修訂（`35101cc`），critic 無發現 | 第一次派 spec_writer 失敗：同一 Codex 對話的 agent 執行緒已達上限，改用新對話 | ＋5 | actcfx |
+| 2026-11-10 | Bolt 01 / G4 修訂 | Codex（gpt-6.1-sol；uml_drafter、tracer gpt-6-luna） | 主執行緒、uml_drafter、critic（UML）、tracer（FULL） | 依 G4 處置與 CR-002 修訂 UML 兩輪，每輪限定範圍再審並更新追溯表 | 第 1 輪（`12a2a06`）；第 2 輪修正 U2-F01 至 U2-F06；追溯表 11 Mapped、23 Partial、0 Gap | U3-F01（活動圖重試路徑）由 PO 拒絕；critic 因 `shell_tool = false` 只審查 Orchestrator 轉述的摘錄 | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / S4–G4 | Claude Opus 5.5 | （非 Codex agent） | 填入 `ai/prompts.md` 指令的 hash；預檢 UML；對照 critic 與 tracer 結果；起草 G4 處置建議與審查紀錄、CR-002、CR-002 修訂與 UML 修訂兩輪的 Codex 指令；由 `~/.codex/sessions` 推算 AI 時間 | G4 處置（PO 回答「照你說的」）；R-01、R-02；CR-002 推導規則與商家可見範圍建議；U3-F01 拒絕建議；UML 修訂指令（`ai/prompts.md` 沒有對應指令） | 第一次回答 S4 時自行撰寫指令且會接著執行 S5：PO 指出應使用 `ai/prompts.md` | ＋20 | actcfx |
 
 ## AI 錯誤案例
 
@@ -56,3 +56,7 @@
 | 01 | G2 澄清問題 | 10 | 21（actcfx）＋ 14（BSugarSweet） | 1 | 0 |
 | 01 | S3 需求起草與審查 | 0 | 0 | 22 | 27（Claude 誤代跑 S3，AI 時間） |
 | 01 | G3 核准需求 | 0 | 50（actcfx）＋ 未記錄（BSugarSweet） | 0 | 0 |
+| 01 | S4 建立 UML | 0 | 0 | 5 | 0 |
+| 01 | S5 追溯與 UML 審查 | 0 | 0 | 6 | 0 |
+| 01 | CR-002 學生登入與彙總狀態 | 0 | 未記錄（PO 釐清含在 G4 審查時間內） | 4 | 0 |
+| 01 | G4 核准 UML（含兩輪修訂） | 0 | 43（actcfx）＋ 未記錄（BSugarSweet） | 12 | 0 |
