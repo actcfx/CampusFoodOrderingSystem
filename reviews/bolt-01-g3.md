@@ -3,7 +3,7 @@
 - 關卡：G3（核准需求）
 - 審查對象與版本（commit hash）：`specs/001-campus-ordering/spec.md`、`specs/001-campus-ordering/checklist.md` @ `32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e`（spec blob `41204bb`，critic 已審查此版本；先前 checklist 審查版本為 `25b0155`，spec blob `92a1b53`）
 - 審查人：actcfx
-- 核准人：
+- 核准人：BSugarSweet
 - 開始時間：2026/11/10 08:00
 - 結束時間：2026/11/10 08:30
 
@@ -88,7 +88,7 @@
 
 ## 決定
 
-- [ ] 核准，可以進入下一步
+- [x] 核准，可以進入下一步
 - [ ] 退回，需要修訂（寫明要修訂的項目）
 
-核准人簽名與日期：
+核准人簽名與日期：BSugarSweet 2026/11/10
