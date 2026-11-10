@@ -17,6 +17,10 @@
 | 2026-10-29 | Bolt 01 / G1 | Claude Opus 5.5 | （非 Codex agent） | 依 G1 決定（1 個 Bolt）起草 intent.md 的 I-5 編號、更新計畫範圍與 T13/T14、起草 G1 審查紀錄 | I-5.1、I-5.2 編號；計畫改為單一 Bolt 並新增 T13、T14；G1 審查紀錄 R-01 至 R-05 | R-03 原本建議「延後到 S2 由 elicitor 提問」：PO 已知道「先」的意思（暫定不做），直接說明，改為接受並在 intent.md 補上說明 | +10 | actcfx |
 | 2026-11-07 | Bolt 01 / 流程改善 | Claude Opus 5.5 | （非 Codex agent） | 減少人工往返：`ai/prompts.md` S2 改為一張表列出所有問題、S3 的 T4 至 T7 一次執行只停在 G3；新增 `scripts/gate.sh`（填審查紀錄的 hash 與時間）、`scripts/timelog.sh`（工時）、`scripts/redact-transcript.sh`（去敏第一輪，只輸出行號）。PO 決定：除了 Git 寫入、關卡核准、簽名與去敏最後確認以外，這三支腳本由 Claude 執行，包含寫入 Reviewer 負責的 `reviews/` 與本檔。這偏離 METHOD.md §3.2 的檔案負責表 | 全部| 無| +10| actcfx |
 | 2026-11-08 | Bolt 01 / S2、G2 | Claude Opus 5.5 | （非 Codex agent） | 把 elicitor 的 `questions.md` 帶回 bolt 分支；整理 24 題一覽表；檢查 PO 回答並提出 G2 findings；依 PO 在對話中的回答填入 `questions.md` 的「G2 補充」；執行 `gate.sh`、`timelog.sh`；起草 G2 審查紀錄；更新計畫 T2、T3 | R-01 至 R-12；`questions.md` 的 G2 補充；G2 審查紀錄草稿；計畫 T2、T3 done | 一開始判斷 S2 還沒開始、提議重跑 elicitor：elicitor 已完成，S2 是在等 PO 回答| ＋5| actcfx |
+| 2026-11-09 | Bolt 01 / S3（作廢） | Claude Opus 5.5 | （非 Codex agent；以 Claude subagent 代替 spec_writer、critic） | PO 要求「繼續 S3」；Claude 自行擔任 Orchestrator，派 Claude subagent 起草 `spec.md`、critic 審查三輪、spec_writer 修訂兩輪，並更新計畫 T4–T7 | PO 在過程中的回答（整理為 G3-01 至 G3-14，之後記入 `reviews/bolt-01-g3.md`） | 全部 S3 產出：違反 METHOD.md §3.2，S3 應由 Codex 的 spec_writer、critic 執行；`spec.md` 未進入 repo，計畫 T4–T7 改回 todo（`1c76a51`），S3 由 Codex 重跑。見下方 AI 錯誤案例 | −20 | actcfx |
+| 2026-11-09 | Bolt 01 / S3 | Claude Opus 5.5 | （非 Codex agent） | 確認 agent worktree 落後遠端、請人類更新；說明 Codex 需在 agent worktree 啟動（workspace-write 只能寫啟動目錄）；整理 PO 回答筆記；建議 commit 前先處理 `questions.md` 標頭 | 全部 | 無 | +5 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / S3 T4–T7 | Codex（gpt-6.1-sol） | 主執行緒、spec_writer、critic | 依 `ai/prompts.md` S3 起草並審查 `spec.md`（輸入 questions.md@db1a766）；依 G3 前 PO 決定修訂四次；critic 共五輪：F-01 至 F-08、F-07 至 F-09、F-10 至 F-13、F-14 至 F-15、F-16 | `spec.md`（blob `92a1b53`）；A 組 F-01 至 F-04、F-09、F-10、F-14 的修正；B 組依 G3-01 至 G3-24 修訂；F-08、F-15、F-16 及其他 4 項待確認事項列入 Unconfirmed | 無。第一次在主工作目錄啟動時，Codex 判斷無法寫入 agent worktree 而停止（正確行為，非錯誤） | ＋30 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / G3 | Claude Opus 5.5 | （非 Codex agent） | 整理 Codex 各輪摘要給 PO；對 B 組提出建議；依 PO 回答起草 `reviews/bolt-01-g3.md`（G3-01 至 G3-24、F-01 至 F-16 處置）；提供每輪給 Codex 的指令 | G3 審查紀錄草稿；F-07、F-11、F-12、F-13 的建議（G3-18、G3-20 至 G3-22）；用 G3-nn 作為需求來源的記錄方式 | 第一版 G3 表把 PO 原文的錯字照抄並將部分回答寫成轉述：PO 要求改正錯字並逐字引用；「不列出」解讀為隱藏無上架品項的商家：PO 改為列出並放最下面（G3-07）；「停用商家」的意思與 PO 的理解不一致，重新提問後 PO 確認保留並新增刪除品項（G3-23、G3-24） | +20 | actcfx |
 
 ## AI 錯誤案例
 
@@ -27,6 +31,13 @@
 - 誰發現、如何發現：Claude 審查草稿時提出（R-01、R-04），PO 確認
 - 處置：接受意見，由 Codex 修訂為 v0.2.0 時刪除該段並改正來源
 
+- 日期與步驟：2026-11-09，Bolt 01 / S3
+- Agent 與模型：Claude Opus 5.5（Claude Code，非 Codex agent）
+- AI 產出了什麼：PO 說「繼續 S3」，Claude 自行擔任 Orchestrator，派 Claude subagent 扮演 spec_writer 與 critic，產出 `spec.md`（FR-01 至 FR-57）與三輪審查
+- 為什麼是錯的：METHOD.md §3.2 規定 Orchestrator 是 Codex 主執行緒，spec_writer、critic 是 `.codex/agents/` 定義的 Codex subagent。用 Claude 代跑會讓 S3 不是本組方法的產出，也讓三組比較的紀錄失真
+- 誰發現、如何發現：PO 在 Claude 停在 G3 時指出「你直接開 subagent 那不是沒有 codex 什麼事了」
+- 處置：產出作廢，`spec.md` 移出 repo；計畫 T4–T7 改回 todo（`1c76a51`）；S3 由人類在 agent worktree 啟動 Codex 重跑。PO 過程中的回答保留，於 G3 記為 G3-nn
+
 ## 工時
 
 | Bolt | 步驟 | 人類撰寫 | 人類審查 | AI 執行 | 重做 |
@@ -34,4 +45,4 @@
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
 | CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ 15（BSugarSweet） | 1 | 1 |
 | 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5 (BSugarSweet） | 2 | 0 |
-| 01 | G2 澄清問題 | 0 | 21（actcfx）＋ 未記錄（BSugarSweet） | 1 | 0 |
+| 01 | G2 澄清問題 | 10 | 21（actcfx）＋ 未記錄（BSugarSweet） | 1 | 0 |
