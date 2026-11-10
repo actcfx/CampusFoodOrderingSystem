@@ -27,21 +27,22 @@ end
 
 Student -> System: Open or refresh own order details
 System -> Suborder: Read order and visible suborders
-Suborder --> System: Order ID, suborder IDs, details, amounts and statuses
+Suborder --> System: Parent order ID, visible suborder IDs, details, amounts and statuses
 System -> Suborder: Derive parent aggregate status from current suborder statuses
 Suborder --> System: Aggregate status under FR-33
-System --> Student: Show aggregate status and group visible suborder IDs by status, including 已拒單
+System --> Student: Show parent ID and visible details, group visible suborder IDs by status including 已拒單, show aggregate status
 
 Merchant -> System: Open or refresh own order details
 System -> Suborder: Read own visible suborders and statuses
 Suborder --> System: Parent order ID and own suborder IDs, details and statuses
-System --> Merchant: Show own suborders grouped by status, without aggregate status
+System --> Merchant: Show parent ID and own visible details, group own suborder IDs by status including 已拒單, omit aggregate status
 
 note over Merchant,Suborder
   Requirements: FR-21, FR-26–FR-30, FR-33
   Merchant visibility and state changes are limited to own suborders.
-  State transitions (FR-26): 待接單 -> 已接單 or 已拒單; 已接單 -> 可取餐; 可取餐 -> 已取餐.
+  Each suborder starts in 待接單. Transitions (FR-26): 待接單 -> 已接單 or 已拒單; 已接單 -> 可取餐; 可取餐 -> 已取餐.
   已拒單 and 已取餐 are terminal.
+  After deactivation, a merchant may still move its existing nonterminal suborders through valid transitions to terminal states (FR-26).
   Student aggregate status is derived as specified by FR-33.
 end note
 @enduml

@@ -9,7 +9,7 @@ start
 if (Ready to submit?) then (yes)
   :Sign in as student;
   :Set pickup time for each merchant suborder;
-  :Revalidate merchant, item, option and same-day future pickup time;
+  :Revalidate merchant, item, option and same-day future pickup time in Asia/Taipei;
   :Check quantity-mode totals and manual-mode sellable status;
   if (Any validation fails?) then (yes)
     :Show reason and retain cart;
@@ -27,11 +27,14 @@ if (Ready to submit?) then (yes)
     if (Atomic operation succeeds?) then (yes)
       :Return parent order ID;
       :Clear cart;
-      if (Same confirmed submission is retried?) then (yes)
-        :Return the same result without another order or stock deduction;
-      endif
     else (no)
       :Create no order, deduct no stock, show reason and retain cart;
+    endif
+    if (Same confirmed submission is retried?) then (yes)
+      :Return the same first-attempt result without another order or stock deduction;
+      note right
+        Return a parent order ID only when that first attempt succeeded (FR-25).
+      end note
     endif
   endif
 else (no)

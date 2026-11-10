@@ -35,6 +35,9 @@
 | T15 | uml_drafter | spec@35101cc、UML@f14a1578、G4 審查及 CR-002@12fd02a | `uml/` 修訂 | G3 重新核准 | 套用接受與部分接受的處置及 CR-002 影響 | done | — |
 | T16 | tracer (FULL) | spec@35101cc、T15 完成的 UML、intent、questions、G4 審查及 CR-002@12fd02a | `traceability.md` | T15 | 列出所有追溯缺口 | done | G4 |
 | T17 | critic (UML) | spec@35101cc、UML@f14a1578 與 T15 修訂、G4 審查及 CR-002@12fd02a | 限定範圍 findings | T15 | 回報處置結果與新增問題 | done | G4 |
+| T18 | uml_drafter | spec@35101cc、UML 第一輪修訂@12a2a06、G4 審查與 F-01 至 F-06 | `uml/` 第二輪修訂 | T15–T17 | 僅修訂六項指定問題 | done | — |
+| T19 | critic (UML) | spec@35101cc、T18 完成的 UML、G4 審查與 F-01 至 F-06 | 限定範圍 findings | T18 | 逐項確認修訂並按組別回報新增問題 | done | G4 |
+| T20 | tracer (FULL) | spec@35101cc、T18 完成的 UML、intent、questions、G4 審查 | `traceability.md` | T18 | 回報所有追溯缺口 | done | G4 |
 
 狀態值：todo / doing / blocked / done / rejected
 
@@ -42,6 +45,7 @@
 
 - T10 與 T11 可以平行。
 - T16 與 T17 在 T15 完成後可以平行。
+- T19 與 T20 在 T18 完成後可以平行。
 - T13 必須在 G4 核准之後開始；T14 在 T13 完成後開始。
 - 其他任務循序執行。
 
@@ -67,3 +71,4 @@
 | 2026-11-10 | CR-002 已接受（`abdd4fd`）；規格修訂尚未開始，Codex 子代理執行緒已達上限，無法啟動 spec_writer。待修訂及限定範圍 SPEC 再審後，由 PO 重新核准 | 待人工審查 |
 | 2026-11-10 | CR-002 規格修訂及限定範圍 SPEC 再審完成（核准基準 `32e10ee`，修訂版 spec blob `433fc4da96d7c1bb1017bc9d6da9bf30ee93e91b`）。修訂 FR-01、FR-30、FR-32、FR-33 與受影響的主要資料實體，移除已確認的 G3-14、G3-15。critic 在 AMBIGUOUS、MISSING、CONFLICT、INVENTED 四組均無發現。停在 G3，等待 PO 重新核准 | 待 PO 重新核准 |
 | 2026-11-10 | T15 done。以 spec `35101cc` 及 UML `f14a1578` 為基準，依 G4 接受及部分接受的處置和 CR-002 影響修訂 UML。T16、T17 done。追溯表 10 Mapped、24 Partial、0 Gap；限定範圍審查新增 6 項問題，U-F06、U-F07、U-F11、R-01 尚未完全解決。停在 G4 | 待人工審查 |
+| 2026-11-10 | G4 第二輪。T18 done：依 spec `35101cc` 修訂 F-01 至 F-06（UML diff `ecd8dd9`）；T19、T20 done：F-01 至 F-04 及 F-06 已解決。F-05 尚缺活動圖驗證失敗後的重試路徑（A 組 MISSING）；B 組無新增問題。追溯表 11 Mapped、23 Partial、0 Gap。停在 G4 | 待人工審查 |

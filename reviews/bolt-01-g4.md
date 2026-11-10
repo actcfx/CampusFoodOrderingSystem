@@ -12,8 +12,8 @@
 ## 處置後的流程
 
 1. 依 METHOD.md §6 提出 CR-002（`changes/CR-002.md`），確定學生登入憑證（G3-15）與整筆訂單彙總狀態（G3-14），由 spec_writer 修訂 spec。
-2. uml_drafter 依接受的 findings 及 CR-002 修訂 UML；critic 只再審修訂部分；tracer 依修訂後 UML 更新追溯表。
-3. PO 重新核准 spec 的新版本後，G4 才核准。
+2. uml_drafter 依接受的 findings 及 CR-002 修訂 UML；critic 只再審修訂部分；tracer 依修訂後 UML 更新追溯表。共兩輪：第 1 輪處理 U-F01 至 U-F15、R-01、R-02 及 CR-002（`12a2a06`）；第 2 輪處理第 1 輪 critic 的 U2-F01 至 U2-F06。
+3. PO 已於 CR-002 重新核准 spec（`35101cc`）。G4 核准對象改為第 2 輪修訂後的版本。
 
 ## 審查結果
 
@@ -36,6 +36,13 @@
 | U-F15 類別圖規定商家帳號一對一、每個學生帳號剛好一個購物車 | critic | INVENTED | 接受 | 改為 spec 有規定的多重性，未規定者不標 |
 | R-01 `sequence-order.puml:23` 金額變動條件缺少選項加價；追溯表把 FR-23 標為 Mapped 並稱序列已列出三項 | AI（Claude） | AMBIGUOUS | 接受 | 併入 U-F07 修正；FR-23 改為 Partial，直到修正完成 |
 | R-02 循序圖缺少金額變動後學生不確認的分支，與活動圖不一致 | AI（Claude） | MISSING | 接受 | 併入 U-F07 修正 |
+| U2-F01 結帳判斷條件未涵蓋只有選項加價變動（第 1 輪修訂後 critic 的 F-01） | critic | AMBIGUOUS | 接受 | 第 2 輪修正，critic 確認已解決；R-01 隨之完成 |
+| U2-F02 查詢回應未明列整筆訂單 ID、依狀態分組的子訂單；商家分組只含自家且含已拒單（F-02） | critic | AMBIGUOUS | 接受 | 第 2 輪修正，critic 確認已解決（FR-30、FR-33、CR-002） |
+| U2-F03 取餐時間檢查未寫 Asia/Taipei（F-03） | critic | MISSING | 接受 | 第 2 輪修正，critic 確認已解決（FR-17） |
+| U2-F04 狀態轉移未含初始狀態待接單，及停用商家可處理既有子訂單（F-04） | critic | MISSING | 接受 | 第 2 輪修正，critic 確認已解決（FR-26） |
+| U2-F05 重試流程在送單失敗後仍回傳訂單 ID，與活動圖矛盾（F-05） | critic | CONFLICT | 接受 | 第 2 輪修正循序圖：重試回傳第一次的結果，成功才有訂單 ID。活動圖的殘留見 U3-F01 |
+| U2-F06 交付帳密給商家的是後台介面而非管理者（F-06） | critic | CONFLICT | 接受 | 第 2 輪修正，critic 確認已解決（FR-02） |
+| U3-F01 活動圖在驗證失敗時直接結束，未經過重試路徑（`activity-order.puml:14`） | critic（第 2 輪） | MISSING | 拒絕 | PO 於 2026-11-10 回答「照你的」採用 AI 建議。驗證失敗時不建立訂單也不扣庫存，重試不可能重複建立；FR-25 的重試行為已由循序圖完整表達，活動圖只畫主流程 |
 
 ## AI 產出的處置
 
@@ -44,6 +51,15 @@
 | uml_drafter 的 7 份 DRAFT UML（`f14a157`） | 接受，需修訂 | 見審查結果 U-F01 至 U-F15、R-01、R-02 |
 | tracer FULL 追溯表（`f06f408`） | 接受，需更正 | FR-23 誤標為 Mapped（R-01）；其餘 Gap 與 Partial 與 critic 結果一致 |
 | critic UML 審查 U-F01 至 U-F15 | 接受 | 處置見審查結果 |
+| uml_drafter 第 1 輪修訂（`12a2a06`） | 接受，需再修訂 | 17 項處置中 12 項解決；U-F06、U-F07、U-F11、R-01 部分解決，另產生 U2-F01 至 U2-F06 |
+| uml_drafter 第 2 輪修訂 | 接受 | U2-F01 至 U2-F06 中 5 項解決，U2-F05 只剩活動圖（U3-F01） |
+| tracer FULL 更新（第 1、2 輪） | 接受 | 第 2 輪結果：11 Mapped、23 Partial、0 Gap；第 1 輪曾把 FR-17、FR-25、FR-30 標為 Mapped，與 critic 未解決的問題不一致，第 2 輪後已一致 |
+
+## 流程問題
+
+1. critic 未直接讀檔：`critic.toml` 設 `shell_tool = false`，第 1 輪 critic 審查的是 Orchestrator 轉述的摘錄，審查內容由 Orchestrator 決定，獨立性降低。這是 METHOD.md §7.1 限制的實例，記入報告；本 Bolt 不修改 `.codex/` 設定。
+2. Codex 對話的 agent 執行緒上限：同一對話派出 4 個 subagent 後，無法再派 spec_writer（CR-002）。改為每個派出多個 agent 的步驟使用新的 Codex 對話。
+3. PlantUML 未在本機或 Codex 環境渲染驗證。
 
 ## 決定
 
