@@ -9,7 +9,8 @@ start
 if (Ready to submit?) then (yes)
   :Sign in as student;
   :Set pickup time for each merchant suborder;
-  :Revalidate merchant, item, option, stock and pickup time;
+  :Revalidate merchant, item, option and same-day future pickup time;
+  :Check quantity-mode totals and manual-mode sellable status;
   if (Any validation fails?) then (yes)
     :Show reason and retain cart;
     stop
@@ -22,10 +23,16 @@ if (Ready to submit?) then (yes)
         stop
       endif
     endif
-    :Create one order and one suborder per merchant;
-    :Deduct available quantity-mode stock;
-    :Return parent order ID;
-    :Clear cart;
+    :Atomically create one order and one suborder per merchant and deduct quantity-mode stock;
+    if (Atomic operation succeeds?) then (yes)
+      :Return parent order ID;
+      :Clear cart;
+      if (Same confirmed submission is retried?) then (yes)
+        :Return the same result without another order or stock deduction;
+      endif
+    else (no)
+      :Create no order, deduct no stock, show reason and retain cart;
+    endif
   endif
 else (no)
   :Continue browsing or editing cart;
@@ -34,5 +41,7 @@ stop
 
 note right
   Requirements: FR-03–FR-05, FR-11–FR-25
+  Amount-change confirmation covers base price, option surcharge and fixed discount (FR-23).
+  Declining the changed amount retains the cart and stops submission.
 end note
 @enduml

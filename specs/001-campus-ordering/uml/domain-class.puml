@@ -6,6 +6,7 @@ skinparam classAttributeIconSize 0
 class StudentAccount {
   studentNumber
   nickname
+  passwordCredential
 }
 class MerchantAccount
 class AdministratorAccount
@@ -63,16 +64,16 @@ class SelectedOption {
 }
 
 StudentAccount "1" -- "0..*" Order : places
-MerchantAccount "1" -- "1" Merchant : operates
+MerchantAccount -- Merchant : operates
 AdministratorAccount ..> Merchant : manages accounts
 Merchant "1" -- "0..*" Category : owns
 Merchant "1" -- "0..*" Item : owns
 Category "0..1" -- "0..*" Item : classifies
 Item "1" -- "0..*" OptionGroup
 OptionGroup "1" -- "0..*" CustomOption
-StudentAccount "0..1" -- "1" Cart : uses
+StudentAccount -- Cart : uses
 Cart "1" -- "0..*" CartLine
-CartLine "*" -- "1" Item
+CartLine "*" -- "0..1" Item
 CartLine "*" -- "0..*" CustomOption : selects
 Order "1" *-- "1..*" Suborder
 Suborder "*" -- "1" Merchant
@@ -81,6 +82,7 @@ OrderLine "*" -- "0..*" SelectedOption
 
 note right of StudentAccount
   Requirements: FR-01, FR-24, FR-29
+  studentNumber is unique. passwordCredential is used with studentNumber to sign in.
 end note
 note right of Merchant
   Requirements: FR-02, FR-03, FR-06, FR-09, FR-20
@@ -93,9 +95,22 @@ note right of Cart
 end note
 note right of Order
   Requirements: FR-16, FR-24–FR-25, FR-28–FR-30, FR-33
+  aggregateStatus is derived from Suborder.status under FR-33.
+  Excluding 已拒單 suborders: all 待接單 -> 送出; any 已接單, or 待接單 mixed with another status -> 製作中;
+  all remaining statuses in 可取餐 or 已取餐 with at least one 可取餐 -> 完成; all 已取餐 -> 已取餐.
+  If every suborder is 已拒單, aggregateStatus is 已拒單.
+  Only the student query displays aggregateStatus.
 end note
 note right of Suborder
   Requirements: FR-16–FR-21, FR-26–FR-30
+  Status transitions under FR-26:
+  待接單 -> 已接單 or 已拒單
+  已接單 -> 可取餐
+  可取餐 -> 已取餐
+  已拒單 and 已取餐 are terminal.
+end note
+note on link between CartLine and Item
+  If the referenced item was permanently deleted, submission fails under FR-22.
 end note
 note right of OrderLine
   Requirements: FR-13, FR-19, FR-28

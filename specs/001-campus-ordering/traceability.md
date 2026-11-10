@@ -1,15 +1,15 @@
 # Bolt 01 需求追溯表
 
 - **模式** FULL
-- **規格基準** `specs/001-campus-ordering/spec.md` @ `32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e`
-- **UML 基準** `specs/001-campus-ordering/uml/` @ `f14a1578f13d3a092e375c28dd0d3b5eb345e37c`
+- **規格基準** `specs/001-campus-ordering/spec.md` @ `35101cc3eb3e5a47f20310dabf37feb5937ea5e8`
+- **UML 基準** `specs/001-campus-ordering/uml/` revised from `f14a1578f13d3a092e375c28dd0d3b5eb345e37c`
 - **狀態說明** Mapped 表示有對應且圖中至少描述主要結構或流程。Partial 表示圖中只有廣義步驟、屬性或需求 ID 註記，未表達全部規則。Gap 表示找不到能表達該需求的 UML 元素。
 - **程式模組** 尚未建立架構雛形，本欄留白。
 
 | Source | Requirement ID | UML element | Code module | Status |
 |---|---|---|---|---|
-| Q-01, Q-20, Q-24, G3-06, G3-15 | FR-01 | 無明確註冊/學生登入用例；僅 StudentAccount（domain-class.puml） |  | Gap |
-| Q-01 (R-05, R-09, R-10), Q-03 (R-07), G3-06 | FR-02 | UC_Merchants, UC_Admins (use-cases.puml); Administrator, AdminUI, Accounts (sequence-admin.puml); AdministratorAccount, MerchantAccount, Merchant (domain-class.puml) |  | Partial |
+| Q-01, Q-20, Q-24, G3-06, G3-15, CR-002 | FR-01 | UC_Register、UC_Login（use-cases.puml）；學生註冊與登入序列（sequence-order.puml）；StudentAccount（domain-class.puml） |  | Mapped |
+| Q-01 (R-05, R-09, R-10), Q-03 (R-07), G3-06 | FR-02 | UC_Merchants, UC_Admins (use-cases.puml); Administrator and Merchant actors; Administration System, Merchant Account Store, Administrator Account Store, credential delivery to Merchant (sequence-admin.puml); AdministratorAccount, MerchantAccount, Merchant (domain-class.puml) |  | Partial |
 | I-1.1, Q-01, Q-02 (R-09), G3-07, G3-09, G3-21, G3-25 | FR-03 | UC_Browse (use-cases.puml); Visitor/System/Catalog browse active merchants (sequence-order.puml); Browse active merchants step (activity-order.puml); Merchant (domain-class.puml) |  | Partial |
 | I-1.2, Q-01, Q-02 (R-06), Q-04, G3-09, G3-11, G3-21 | FR-04 | UC_Browse (use-cases.puml); Visitor/System/Catalog browse menu (sequence-order.puml); Merchant, Item (domain-class.puml) |  | Partial |
 | Q-02 (R-06), Q-05, G3-08, G3-10, G3-21, G3-26 | FR-05 | UC_Search (use-cases.puml); Search/filter catalog step (activity-order.puml); System/Catalog search results (sequence-order.puml) |  | Partial |
@@ -25,49 +25,42 @@
 | Q-14, G3-03 | FR-15 | Cart; StudentAccount–Cart association (domain-class.puml); UC_Cart (use-cases.puml) |  | Partial |
 | I-1.4, Q-13 (R-03, R-12), Q-20 | FR-16 | UC_Submit (use-cases.puml); create parent order and merchant suborders (sequence-order.puml); Order–Suborder relationship (domain-class.puml) |  | Mapped |
 | I-3.5, Q-12, Q-13 (R-12) | FR-17 | Set pickup time per merchant suborder (activity-order.puml); submit with pickup times (sequence-order.puml); Suborder.pickupTime (domain-class.puml) |  | Mapped |
-| I-4.6, Q-15 | FR-18 | No UML element describes TWD/integer precision or rejection of decimals; only broad FR-16–FR-25 note (sequence-order.puml) |  | Gap |
-| I-4.1–I-4.3, I-4.6, Q-13 (R-12), Q-16 | FR-19 | OrderLine/SelectedOption snapshots and Suborder totals (domain-class.puml); note only, no calculation formula (sequence-order.puml) |  | Partial |
-| I-4.4, I-4.6, Q-13 (R-12), Q-17 (R-08), G3-02, G3-18 | FR-20 | Merchant.fixedDiscount, Suborder.discount (domain-class.puml); UC_Discount (use-cases.puml) |  | Partial |
-| I-4.1–I-4.6, Q-13 (R-03, R-12), Q-16–Q-18, G3-12, G3-18 | FR-21 | Order.total, Suborder.discount/total (domain-class.puml); show amounts in order query (sequence-suborders.puml) |  | Partial |
+| I-4.6, Q-15 | FR-18 | System boundary note states integer New Taiwan dollar amounts (use-cases.puml) |  | Partial |
+| I-4.1–I-4.3, I-4.6, Q-13 (R-12), Q-16 | FR-19 | OrderLine/SelectedOption snapshots and Suborder totals (domain-class.puml); UC_Discount references FR-19–FR-21 formulas (use-cases.puml); no explicit calculation steps |  | Partial |
+| I-4.4, I-4.6, Q-13 (R-12), Q-17 (R-08), G3-02, G3-18 | FR-20 | Merchant.fixedDiscount, Suborder.discount (domain-class.puml); UC_Discount and fixed-discount setting/editing flow, including discount bounds and preservation of existing totals (use-cases.puml, sequence-catalog.puml) |  | Partial |
+| I-4.1–I-4.6, Q-13 (R-03, R-12), Q-16–Q-18, G3-12, G3-18 | FR-21 | Order.total, Suborder.discount/total (domain-class.puml); UC_Discount references formulas in FR-19–FR-21; fixed discount behavior and stored totals (use-cases.puml, sequence-catalog.puml); display amounts in order query (sequence-suborders.puml) |  | Partial |
 | I-1.4, Q-08, Q-12, Q-19, G3-21, G3-24 | FR-22 | Revalidate merchants/items/options/stock/time (sequence-order.puml, activity-order.puml); broad validation-failure branch |  | Partial |
-| I-4.6, Q-09, Q-19, G3-02 | FR-23 | Amount-change confirmation branch; sequence-order.puml and activity-order.puml explicitly name price/option surcharge/fixed discount changes |  | Mapped |
+| I-4.6, Q-09, Q-19, G3-02 | FR-23 | Sequence guard says base price or fixed discount changed, while adjacent note and activity guard explicitly include option surcharge; confirm/decline branches shown (sequence-order.puml, activity-order.puml). Guard inconsistency pending critic review |  | Partial |
 | I-1.4, Q-01, Q-08, Q-10, Q-11, Q-13, Q-14, Q-20, G3-03 | FR-24 | UC_Submit (use-cases.puml); create order/deduct stock (sequence-order.puml); main ordering activity (activity-order.puml) |  | Partial |
-| I-1.4, I-1.5, Q-13, Q-21 | FR-25 | Order/orderId (domain-class.puml); no retry/idempotent submission interaction in sequence/activity diagrams |  | Gap |
+| I-1.4, I-1.5, Q-13, Q-21 | FR-25 | Retry of same confirmed submission returns same order result without another deduction (sequence-order.puml) |  | Mapped |
 | I-1.5, Q-13 (R-12), Q-22, G3-21 | FR-26 | UC_Suborders (use-cases.puml); update status (sequence-suborders.puml); Suborder.status (domain-class.puml) |  | Partial |
 | Q-07, Q-08, Q-13 (R-12), Q-22, G3-19 | FR-27 | Optional rejection and inventory restoration (sequence-suborders.puml); Item stock fields (domain-class.puml) |  | Partial |
 | Q-13 (R-03, R-12), Q-23, G3-02, G3-12 | FR-28 | OrderLine and SelectedOption snapshots (domain-class.puml); sequence-catalog note on preserving order contents |  | Partial |
 | I-1.5, Q-13 (R-12), Q-24 | FR-29 | UC_ViewOrder/UC_Suborders (use-cases.puml); own suborders and own order details (sequence-suborders.puml) |  | Partial |
-| I-1.5, Q-13 (R-12), Q-20, Q-23, Q-24, G3-13 | FR-30 | Order.orderId, Suborder.suborderId (domain-class.puml); IDs/details/amounts/statuses in sequence-suborders.puml |  | Mapped |
-| I-5.1, Q-18 | FR-31 | No UML element describes payment exclusion; omitted from diagram notes |  | Gap |
-| Q-01, G3-15, G3-16 | FR-32 | AdminUI and Merchant Back Office participants (sequence-admin.puml, sequence-catalog.puml); no explicit login-screen or separate student front-end model |  | Partial |
-| I-1.5, Q-22, G3-14 | FR-33 | Order.aggregateStatus (domain-class.puml); status query sequence note references FR-33 but no aggregate derivation flow |  | Partial |
-| I-5.2 | NFR-01 | No UML element describes web delivery platform |  | Gap |
+| I-1.5, Q-13 (R-12), Q-20, Q-23, Q-24, G3-13, CR-002 | FR-30 | Order.orderId, Suborder.suborderId (domain-class.puml); IDs/details/amounts/statuses in sequence-suborders.puml |  | Mapped |
+| I-5.1, Q-18 | FR-31 | System boundary note states payment scope is limited to amount display and excludes online payment/status flows (use-cases.puml) |  | Mapped |
+| Q-01, G3-15, G3-16, CR-002 | FR-32 | UC_Login explicitly notes separate role sign-in screens; student sign-in appears in sequence-order, administrator sign-in in sequence-admin, and merchant login has no dedicated interaction sequence. Student ordering system and Merchant Back Office have separate lifelines (sequence-order.puml, sequence-catalog.puml) |  | Partial |
+| I-1.5, Q-22, G3-14, CR-002 | FR-33 | Order.aggregateStatus derivation rule and student query aggregation (domain-class.puml, sequence-suborders.puml); state groups by visible suborder IDs (use-cases.puml, sequence-suborders.puml) |  | Mapped |
+| I-5.2 | NFR-01 | System boundary note states this version is a web application (use-cases.puml) |  | Mapped |
 
 ## 需求未追溯到 UML
 
-以下需求在圖中沒有對應元素，或只有圖面註記而沒有能表達其規範內容的行為或結構。它們需要在 UML 完成前補圖或由 Reviewer 明確接受為未建模範圍。
-
-| Requirement ID | Gap |
-|---|---|
-| FR-01 | 學生註冊、學號與暱稱輸入、登入流程未建模。StudentAccount 只列出欄位。 |
-| FR-18 | 幣別、整數精度及拒絕小數設定沒有模型或流程。 |
-| FR-19 | 計價公式與逐項小計沒有模型或計算步驟。 |
-| FR-25 | 送單重試只建立一次訂單的冪等流程未建模。 |
-| FR-31 | 不進行線上付款的範圍限制未表達。 |
-| NFR-01 | 網頁平台交付限制未表達。 |
-
-以下需求在 UML 有概念或通用步驟，但重要規則只由需求 ID 註記涵蓋，尚未在圖中具體表達：
+依核准的映射定義，沒有需求完全缺少 UML 對應。以下 Partial 項目有相應用例、屬性、通用流程或圖面註記，但尚未具體呈現全部規範內容。U-F12、U-F13 依 G4 決議保留為 Partial。
 
 | Requirement ID | Partial coverage |
 |---|---|
-| FR-02 | 管理者建立商家及管理者帳號有序列步驟。僅登入的管理者可使用後台、角色權限等細節不完整。 |
-| FR-03–FR-05 | 瀏覽、搜尋、排序與篩選有用例或通用步驟。G3-25 的兩種排序下商家分組、G3-26 的全站價格排序/篩選與具體搜尋結果行為未完整畫出。 |
-| FR-07–FR-08 | 品項名稱、價格與圖片在 Item 或通用新增/編輯活動中涵蓋，欄位驗證及圖片失敗流程未建模。 |
-| FR-10–FR-15 | 庫存模式、選項限制、售完不可加入、合併優先規則、購物車保存與工作階段邊界多數只由屬性、通用動作或註記涵蓋。 |
-| FR-20–FR-24 | 金額計算、無效折扣、送單原子性、超賣防止及驗證失敗細節未完整表達。 |
-| FR-26–FR-29 | 狀態轉移表、停用商家後處理既有子訂單、庫存返還適用條件、成交快照與讀取權限只部分表達。 |
-| FR-32–FR-33 | 角色登入畫面分離與彙總狀態推導未建模；aggregateStatus 僅列為 Order 屬性且推導規則仍 Unconfirmed。 |
+| FR-02 | 商家與管理者帳號建立及交付憑證有流程。商家資料欄位及停用商家後台權限仍屬 Unconfirmed。 |
+| FR-03–FR-05 | 瀏覽、搜尋、排序與篩選有用例、流程及需求註記。G3-25 商家分組排序、G3-26 全站價格排序/篩選等細節依 G4 決議維持 Partial。 |
+| FR-07–FR-08 | 名稱、價格、圖片欄位及新增/編輯流程有表示，欄位驗證與圖片失敗流程未建模。 |
+| FR-10–FR-15 | 庫存模式、選項限制、購物車合併、工作階段保存及登入後是否銜接訪客購物車等規則只由屬性、通用步驟或 Unconfirmed 註記涵蓋。 |
+| FR-18 | 用例圖系統邊界註明整數新台幣金額，未表達拒絕小數等完整規則。 |
+| FR-19–FR-22 | FR-19–FR-21 公式由用例圖註記引用，折扣管理與部分規則有序列及資料欄位表示，未畫出完整計算步驟；FR-22 各項送單驗證細節未逐項展開。 |
+| FR-23 | 循序圖條件文字漏列選項加價，但圖註及活動圖條件有列出。此不一致待 critic 複查，因此維持 Partial。 |
+| FR-24 | 原子建立與扣庫存、失敗不建單及保留購物車已表示。完整檢查與並行送單實作細節未逐項展開。 |
+| FR-32 | 用例圖註明各角色使用分開的登入畫面，學生與管理者登入流程有序列表示。商家登入沒有專屬互動序列。 |
+| FR-26–FR-29 | 子訂單狀態轉移及查詢已表示。停用商家後台管理權限、庫存模式切換後返還及永久刪除後拒單等情境仍依 Unconfirmed 處理。 |
+
 
 ## UML 元素未對應需求
 
-在七張圖的參與者、用例、活動、類別、屬性與關聯中，未發現完全沒有需求來源的元素。部分 UML 元素只由圖上的需求 ID 註記或資料結構概念支持，沒有表示其完整行為；相關不完整處已列於上方「Partial coverage」。
+在七張圖的參與者、用例、活動、類別、屬性及關聯中，未發現完全沒有需求來源的元素。部分元素由需求 ID 註記支持，但不足以表達完整需求，其 Partial 狀態已列於上表。

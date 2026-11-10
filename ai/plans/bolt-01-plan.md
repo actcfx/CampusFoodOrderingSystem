@@ -32,12 +32,16 @@
 | T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | T14 | 所有紀錄完成 | todo | G5 |
 | T13 | scaffolder | spec@<G3 hash>、`uml/`@<G4 hash> | `frontend/`、`backend/` | G4 | 符合 METHOD.md 第 5 節的完成條件 | todo | — |
 | T14 | tracer (CODE) | `traceability.md`、`frontend/`、`backend/`@<hash> | `traceability.md` 程式模組欄 | T13 | 沒有空白對應或已列出 | todo | — |
+| T15 | uml_drafter | spec@35101cc、UML@f14a1578、G4 審查及 CR-002@12fd02a | `uml/` 修訂 | G3 重新核准 | 套用接受與部分接受的處置及 CR-002 影響 | done | — |
+| T16 | tracer (FULL) | spec@35101cc、T15 完成的 UML、intent、questions、G4 審查及 CR-002@12fd02a | `traceability.md` | T15 | 列出所有追溯缺口 | done | G4 |
+| T17 | critic (UML) | spec@35101cc、UML@f14a1578 與 T15 修訂、G4 審查及 CR-002@12fd02a | 限定範圍 findings | T15 | 回報處置結果與新增問題 | done | G4 |
 
 狀態值：todo / doing / blocked / done / rejected
 
 ## 平行執行
 
 - T10 與 T11 可以平行。
+- T16 與 T17 在 T15 完成後可以平行。
 - T13 必須在 G4 核准之後開始；T14 在 T13 完成後開始。
 - 其他任務循序執行。
 
@@ -62,3 +66,4 @@
 | 2026-11-10 | T10、T11 done：依規格 `32e10ee` 與 UML `f14a1578` 完成 FULL 追溯及 UML 審查。追溯缺口見 traceability.md；U-F01 至 U-F15 待 G4 處置。停在 G4 | 待人工審查 |
 | 2026-11-10 | CR-002 已接受（`abdd4fd`）；規格修訂尚未開始，Codex 子代理執行緒已達上限，無法啟動 spec_writer。待修訂及限定範圍 SPEC 再審後，由 PO 重新核准 | 待人工審查 |
 | 2026-11-10 | CR-002 規格修訂及限定範圍 SPEC 再審完成（核准基準 `32e10ee`，修訂版 spec blob `433fc4da96d7c1bb1017bc9d6da9bf30ee93e91b`）。修訂 FR-01、FR-30、FR-32、FR-33 與受影響的主要資料實體，移除已確認的 G3-14、G3-15。critic 在 AMBIGUOUS、MISSING、CONFLICT、INVENTED 四組均無發現。停在 G3，等待 PO 重新核准 | 待 PO 重新核准 |
+| 2026-11-10 | T15 done。以 spec `35101cc` 及 UML `f14a1578` 為基準，依 G4 接受及部分接受的處置和 CR-002 影響修訂 UML。T16、T17 done。追溯表 10 Mapped、24 Partial、0 Gap；限定範圍審查新增 6 項問題，U-F06、U-F07、U-F11、R-01 尚未完全解決。停在 G4 | 待人工審查 |
