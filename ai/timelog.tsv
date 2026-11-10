@@ -9,3 +9,5 @@
 2026-11-10	01	G3	審查	actcfx			20	PO 回答 G3-01 至 G3-26（2026-11-09 至 11-10，PO 估計，待確認）
 2026-11-10	01	S4	AI	actcfx	16:05	16:10	5	Codex uml_drafter
 2026-11-10	01	S5	AI	actcfx	16:23	16:29	6	Codex tracer FULL + critic UML
+2026-11-10	01	CR-002	AI	actcfx			1	tracer IMPACT 16:52:51–16:53:16（由 ~/.codex/sessions 推得）
+2026-11-10	01	CR-002	AI	actcfx			3	新對話主執行緒 17:01:51–17:04:58，含 spec_writer 17:02–17:03、critic 17:03–17:04（由 ~/.codex/sessions 推得）；先前因執行緒上限失敗的嘗試時間未找到紀錄
