@@ -27,8 +27,8 @@
 | T7 | critic (SPEC) | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | findings | T6 | 沒有未處理的 finding | done | — |
 | T8 | Reviewer | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | `checklist.md` | T7 | checklist 完成 | done | G3 |
 | T9 | uml_drafter | `spec.md`@32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e | `uml/` | G3 | 四種圖完成 | done | — |
-| T10 | tracer (FULL) | spec@<G3 hash>、`uml/`@<hash> | `traceability.md` | T9 | 沒有空白對應或已列出 | todo | — |
-| T11 | critic (UML) | spec@<G3 hash>、`uml/`@<hash> | findings | T9 | 報告完成 | todo | G4 |
+| T10 | tracer (FULL) | spec@32e10ee、`uml/`@f14a1578 | `traceability.md` | T9 | 沒有空白對應或已列出 | done | — |
+| T11 | critic (UML) | spec@32e10ee、`uml/`@f14a1578 | findings | T9 | 報告完成 | done | G4 |
 | T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | T14 | 所有紀錄完成 | todo | G5 |
 | T13 | scaffolder | spec@<G3 hash>、`uml/`@<G4 hash> | `frontend/`、`backend/` | G4 | 符合 METHOD.md 第 5 節的完成條件 | todo | — |
 | T14 | tracer (CODE) | `traceability.md`、`frontend/`、`backend/`@<hash> | `traceability.md` 程式模組欄 | T13 | 沒有空白對應或已列出 | todo | — |
@@ -59,3 +59,4 @@
 | 2026-11-10 | T6 done：依 G3-25、G3-26 修訂 FR-03、FR-05，移除兩項已確認事項。T7 限定範圍 SPEC 再審完成（spec blob 41204bb）：F-17 已解決，無新增 A 組或 B 組問題。T7 done，停在 G3 | 待人工審查 |
 | 2026-11-10 | T8 done：Reviewer 完成 `checklist.md` CHK001–CHK023（spec blob 41204bb，commit `32e10ee`）。等待 G3 核准 | 待人工審查 |
 | 2026-11-10 | T9 done：依 G3 核准版本 `32e10ee` 產出 7 份 DRAFT PlantUML，涵蓋四種圖。S5 尚未開始 | 待人工審查 |
+| 2026-11-10 | T10、T11 done：依規格 `32e10ee` 與 UML `f14a1578` 完成 FULL 追溯及 UML 審查。追溯缺口見 traceability.md；U-F01 至 U-F15 待 G4 處置。停在 G4 | 待人工審查 |
