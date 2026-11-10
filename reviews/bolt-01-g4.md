@@ -3,7 +3,7 @@
 - 關卡：G4（核准 UML、追溯表與問題處置）
 - 審查對象與版本（commit hash）：`specs/001-campus-ordering/uml/`、`specs/001-campus-ordering/traceability.md`（`dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb`，第 2 輪修訂後；第一次審查版本為 `f06f408`）
 - 審查人：actcfx
-- 核准人：
+- 核准人：BSugarSweet
 - 開始時間：2026/11/10 16:43
 - 結束時間：2026/11/10 17:26
 
@@ -63,7 +63,7 @@
 
 ## 決定
 
-- [ ] 核准，可以進入下一步
+- [x] 核准，可以進入下一步
 - [ ] 退回，需要修訂（寫明要修訂的項目）
 
-核准人簽名與日期：
+核准人簽名與日期：BSugarSweet 2026/11/10
