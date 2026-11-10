@@ -1,0 +1,89 @@
+@startuml
+title Campus Food Ordering System — Use Cases DRAFT
+left to right direction
+
+actor Visitor
+actor Student
+actor Merchant
+actor Administrator
+
+rectangle "Campus Food Ordering System" {
+  usecase "Browse merchants and menus" as UC_Browse
+  usecase "Search and filter items" as UC_Search
+  usecase "Manage cart" as UC_Cart
+  usecase "Register student account" as UC_Register
+  usecase "Sign in by role" as UC_Login
+  usecase "Submit multi-merchant order" as UC_Submit
+  usecase "View own order and suborders" as UC_ViewOrder
+  usecase "Manage own catalog and categories" as UC_Catalog
+  usecase "Set or edit fixed discount" as UC_Discount
+  usecase "View and update own suborders" as UC_Suborders
+  usecase "Create and manage merchant accounts" as UC_Merchants
+  usecase "Create administrator account" as UC_Admins
+}
+
+Visitor --> UC_Browse
+Visitor --> UC_Search
+Visitor --> UC_Cart
+Visitor --> UC_Register
+Student --> UC_Browse
+Student --> UC_Search
+Student --> UC_Cart
+Student --> UC_Submit
+Student --> UC_ViewOrder
+Student --> UC_Login
+Merchant --> UC_Catalog
+Merchant --> UC_Discount
+Merchant --> UC_Suborders
+Merchant --> UC_Login
+Administrator --> UC_Merchants
+Administrator --> UC_Admins
+Administrator --> UC_Login
+
+note bottom of UC_Browse
+  Requirements: FR-03, FR-04, FR-05
+end note
+note bottom of UC_Cart
+  Requirements: FR-11, FR-12, FR-13, FR-14, FR-15
+end note
+note bottom of UC_Register
+  Requirements: FR-01
+  Registration fields are student number, nickname and password. Student number is unique.
+end note
+note bottom of UC_Login
+  Requirements: FR-01, FR-32
+  Student, merchant and administrator use separate sign-in screens.
+  Student sign-in uses student number and password.
+end note
+note bottom of UC_Submit
+  Requirements: FR-16–FR-25
+end note
+note bottom of UC_ViewOrder
+  Requirements: FR-26, FR-28–FR-30, FR-33
+  Student sees aggregate status and groups visible suborder IDs by status.
+  Merchant sees only own suborders and their status groups, without aggregate status.
+end note
+note bottom of UC_Catalog
+  Requirements: FR-06–FR-11
+end note
+note bottom of UC_Discount
+  Requirements: FR-20, FR-23, FR-28
+  Pricing uses the formulas in FR-19 to FR-21.
+end note
+note bottom of UC_Suborders
+  Requirements: FR-26–FR-30
+end note
+note bottom of UC_Merchants
+  Requirements: FR-02
+end note
+note bottom of UC_Admins
+  Requirements: FR-02
+end note
+
+note bottom of "Campus Food Ordering System"
+  Requirements: NFR-01, FR-18, FR-31
+  This version is a web application. Amounts use integer New Taiwan dollars.
+  Payment scope is limited to displaying amounts. Online payment and payment-status flows are out of scope.
+end note
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+title Merchant Catalog Management — Sequence DRAFT
+actor Merchant
+participant "Merchant Back Office" as BackOffice
+participant "Ordering System" as System
+participant "Catalog" as Catalog
+
+Merchant -> BackOffice: Sign in
+Merchant -> BackOffice: Create or edit own item and options
+BackOffice -> System: Submit item details
+System -> Catalog: Save item
+Catalog --> System: Saved item
+System --> BackOffice: Show item result
+
+Merchant -> BackOffice: Take down or relist own item
+BackOffice -> System: Change listing state
+System -> Catalog: Update listing state
+Catalog --> System: Updated item
+System --> BackOffice: Show updated state
+
+Merchant -> BackOffice: Manage own categories
+BackOffice -> System: Add, edit or delete category
+System -> Catalog: Apply category change
+Catalog --> System: Category result
+System --> BackOffice: Show result
+
+opt Category is deleted
+  System -> Catalog: Clear category association from its items
+  Catalog --> System: Affected items are uncategorized
+  System --> BackOffice: Show affected items as 未分類
+end
+
+Merchant -> BackOffice: Set or edit own fixed discount
+BackOffice -> System: Submit fixed discount
+System -> Catalog: Save nonnegative fixed discount
+Catalog --> System: Discount saved
+System --> BackOffice: Show saved discount
+
+Merchant -> BackOffice: Permanently delete own item
+BackOffice -> System: Request permanent deletion
+System -> Catalog: Delete item
+Catalog --> System: Deletion result
+System --> BackOffice: Show result
+
+note over Merchant,Catalog
+  Requirements: FR-02, FR-06–FR-11, FR-28, FR-32
+  After category deletion, affected items remain and are listed as 未分類 (FR-09).
+  Discount changes apply to future orders; existing order totals remain preserved (FR-20, FR-28).
+  A fixed discount greater than the order subtotal has an effective value of zero (FR-20).
+  After category deletion, affected items remain and are listed as 未分類 (FR-09).
+  Existing order contents remain preserved under FR-28.
+  Deletion while pending suborders reference deducted stock remains Unconfirmed (F-16).
+end note
+@enduml

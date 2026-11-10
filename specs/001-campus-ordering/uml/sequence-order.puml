@@ -1,0 +1,96 @@
+@startuml
+title Submit Multi-Merchant Order — Sequence DRAFT
+actor Visitor
+actor Student
+participant "Ordering System" as System
+participant "Merchant Catalog" as Catalog
+participant "Cart" as Cart
+participant "Order Service" as Orders
+participant "Inventory" as Inventory
+
+== Visitor browsing and cart ==
+Visitor -> System: Browse merchants/menu
+System -> Catalog: Find active merchants and listed items
+Catalog --> System: Matching names, items, prices and availability
+Visitor -> Cart: Add item with valid options, quantity and note
+Cart --> Visitor: Cart contents
+
+== Student order submission ==
+opt Student does not have an account
+  Student -> System: Register with student number, nickname and password
+  System --> Student: Registration result
+end
+Student -> System: Sign in with student number and password
+System --> Student: Student session
+Student -> System: Submit cart with pickup times
+note right of System
+  For each merchant suborder, accept only a same-day pickup time
+  that is still in the future in Asia/Taipei (FR-17).
+end note
+System -> Catalog: Revalidate merchants, items, options and prices
+System -> Inventory: Check quantity-mode stock totals and manual-mode sellable status
+Inventory --> System: Stock validation result
+alt Any validation fails
+  System --> Student: Explain failure and retain cart
+else Base price, selected option surcharge or fixed discount changed
+  System --> Student: Show updated breakdown and total including option surcharge changes
+  alt Student confirms updated amount
+    System -> Orders: Atomically create order/suborders and deduct quantity-mode stock
+    Orders -> Inventory: Deduct quantity-mode stock in the same transaction
+    Inventory --> Orders: Deduction result
+    alt Atomic operation fails
+      Orders --> System: Failure, no order created and no stock deducted
+      System --> Student: Explain failure and retain cart
+    else Atomic operation succeeds
+      Orders --> System: Parent order ID
+      System -> Cart: Clear cart after successful creation
+      System --> Student: Submission result and parent order ID
+    end
+  else Student declines updated amount
+    System --> Student: Keep cart; do not submit
+  end
+else All checks pass without amount changes
+  System -> Orders: Atomically create order/suborders and deduct quantity-mode stock
+  Orders -> Inventory: Deduct quantity-mode stock in the same transaction
+  Inventory --> Orders: Deduction result
+  alt Atomic operation fails
+    Orders --> System: Failure, no order created and no stock deducted
+    System --> Student: Explain failure and retain cart
+  else Atomic operation succeeds
+    Orders --> System: Parent order ID
+    System -> Cart: Clear cart after successful creation
+    System --> Student: Submission result and parent order ID
+  end
+end
+
+opt Same confirmed submission is retried or response is unclear
+  Student -> System: Retry same confirmed submission
+  System -> Orders: Find result for same confirmation
+  Orders --> System: Return the same first-attempt result without another deduction
+  alt First attempt succeeded
+    System --> Student: Return same success result and parent order ID
+  else First attempt failed
+    System --> Student: Return same failure result without an order ID
+  end
+end
+
+note over Orders,Inventory
+  Requirements: FR-24, FR-25
+  Order creation and quantity-mode deduction use one transaction. A deduction failure rolls back order creation.
+  An item removed from the catalog or an invalid pickup time blocks submission under FR-17 and FR-22.
+  Retrying returns the first attempt's result, including failure. A parent order ID is returned only after success (FR-25).
+end note
+
+note over Visitor,Cart
+  Requirements: FR-03–FR-05, FR-11–FR-15
+end note
+note over Student,Inventory
+  Requirements: FR-16–FR-25
+  Amount-change confirmation covers base price, selected option surcharge and fixed discount (FR-23).
+  Declining the changed amount retains the cart and stops submission.
+end note
+note right of Student
+  Requirements: FR-15
+  Whether a visitor cart is carried over after sign-in is Unconfirmed (G3-03).
+end note
+@enduml

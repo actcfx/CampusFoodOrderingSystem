@@ -19,8 +19,16 @@
 | 2026-11-08 | Bolt 01 / S2、G2 | Claude Opus 5.5 | （非 Codex agent） | 把 elicitor 的 `questions.md` 帶回 bolt 分支；整理 24 題一覽表；檢查 PO 回答並提出 G2 findings；依 PO 在對話中的回答填入 `questions.md` 的「G2 補充」；執行 `gate.sh`、`timelog.sh`；起草 G2 審查紀錄；更新計畫 T2、T3 | R-01 至 R-12；`questions.md` 的 G2 補充；G2 審查紀錄草稿；計畫 T2、T3 done | 一開始判斷 S2 還沒開始、提議重跑 elicitor：elicitor 已完成，S2 是在等 PO 回答| ＋5| actcfx |
 | 2026-11-09 | Bolt 01 / S3（作廢） | Claude Opus 5.5 | （非 Codex agent；以 Claude subagent 代替 spec_writer、critic） | PO 要求「繼續 S3」；Claude 自行擔任 Orchestrator，派 Claude subagent 起草 `spec.md`、critic 審查三輪、spec_writer 修訂兩輪，並更新計畫 T4–T7 | PO 在過程中的回答（整理為 G3-01 至 G3-14，之後記入 `reviews/bolt-01-g3.md`） | 全部 S3 產出：違反 METHOD.md §3.2，S3 應由 Codex 的 spec_writer、critic 執行；`spec.md` 未進入 repo，計畫 T4–T7 改回 todo（`1c76a51`），S3 由 Codex 重跑。見下方 AI 錯誤案例 | −20 | actcfx |
 | 2026-11-09 | Bolt 01 / S3 | Claude Opus 5.5 | （非 Codex agent） | 確認 agent worktree 落後遠端、請人類更新；說明 Codex 需在 agent worktree 啟動（workspace-write 只能寫啟動目錄）；整理 PO 回答筆記；建議 commit 前先處理 `questions.md` 標頭 | 全部 | 無 | +5 | actcfx |
-| 2026-11-09 至 2026-11-10 | Bolt 01 / S3 T4–T7 | Codex（gpt-6.1-sol） | 主執行緒、spec_writer、critic | 依 `ai/prompts.md` S3 起草並審查 `spec.md`（輸入 questions.md@db1a766）；依 G3 前 PO 決定修訂四次；critic 共五輪：F-01 至 F-08、F-07 至 F-09、F-10 至 F-13、F-14 至 F-15、F-16 | `spec.md`（blob `92a1b53`）；A 組 F-01 至 F-04、F-09、F-10、F-14 的修正；B 組依 G3-01 至 G3-24 修訂；F-08、F-15、F-16 及其他 4 項待確認事項列入 Unconfirmed | 無。第一次在主工作目錄啟動時，Codex 判斷無法寫入 agent worktree 而停止（正確行為，非錯誤） | ＋30 | actcfx |
-| 2026-11-09 至 2026-11-10 | Bolt 01 / G3 | Claude Opus 5.5 | （非 Codex agent） | 整理 Codex 各輪摘要給 PO；對 B 組提出建議；依 PO 回答起草 `reviews/bolt-01-g3.md`（G3-01 至 G3-24、F-01 至 F-16 處置）；提供每輪給 Codex 的指令 | G3 審查紀錄草稿；F-07、F-11、F-12、F-13 的建議（G3-18、G3-20 至 G3-22）；用 G3-nn 作為需求來源的記錄方式 | 第一版 G3 表把 PO 原文的錯字照抄並將部分回答寫成轉述：PO 要求改正錯字並逐字引用；「不列出」解讀為隱藏無上架品項的商家：PO 改為列出並放最下面（G3-07）；「停用商家」的意思與 PO 的理解不一致，重新提問後 PO 確認保留並新增刪除品項（G3-23、G3-24） | +20 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / S3 T4–T7 | Codex（gpt-6.1-sol） | 主執行緒、spec_writer、critic | 依 `ai/prompts.md` S3 起草並審查 `spec.md`（輸入 questions.md@db1a766）；依 G3 前 PO 決定與 checklist 審查修訂六次；critic 共七輪：F-01 至 F-08、F-07 至 F-09、F-10 至 F-13、F-14 至 F-15、F-16、F-17、最後一輪無新問題 | `spec.md`（blob `41204bb`，commit `32e10ee`）；A 組 F-01 至 F-04、F-09、F-10、F-14 及 checklist 4 項的修正；B 組依 G3-01 至 G3-26 修訂；F-08、F-15、F-16 及其他 4 項待確認事項列入 Unconfirmed | 無。第一次在主工作目錄啟動時，Codex 判斷無法寫入 agent worktree 而停止（正確行為，非錯誤） | ＋30 | actcfx |
+| 2026-11-09 至 2026-11-10 | Bolt 01 / G3 | Claude Opus 5.5 | （非 Codex agent） | 整理 Codex 各輪摘要給 PO；對 B 組提出建議；依 PO 回答起草 `reviews/bolt-01-g3.md`（G3-01 至 G3-26、F-01 至 F-17 處置）；提供每輪給 Codex 的指令；逐項檢查 Reviewer 已勾選的 `checklist.md`；起草 PR 2 內文 | G3 審查紀錄草稿；F-07、F-11、F-12、F-13 的建議（G3-18、G3-20 至 G3-22）；F-17 的建議（G3-25）；用 G3-nn 作為需求來源的記錄方式；checklist 檢查找出的 CHK006、CHK008、CHK016、CHK023 四項問題（交 Codex 修正）；PR 2 內文 | 第一版 G3 表把 PO 原文的錯字照抄並將部分回答寫成轉述：PO 要求改正錯字並逐字引用；「不列出」解讀為隱藏無上架品項的商家：PO 改為列出並放最下面（G3-07）；「停用商家」的意思與 PO 的理解不一致，重新提問後 PO 確認保留並新增刪除品項（G3-23、G3-24）；PR 內文預先勾選「檢查」各項：PO 指出應由核准者勾選，改為不勾 | +20 | actcfx |
+| 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 匯入交接說明與記憶；依 `~/.codex/sessions` 時間戳補記 S3 的 AI 時間、Claude 重做時間與 G3 審查時間（`scripts/timelog.sh add`）；更新本檔工時表 | S3 AI 22 分鐘、重做 27 分鐘、G3 審查 30 分鐘；PO 回答 G3-nn 的 20 分鐘為 PO 估計 | 未依交接說明在 S3 前後執行 `timelog.sh start/stop`，只能事後由 session 紀錄回推 | +10（待確認） | actcfx |
+| 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 檢查全部專案檔案；PO 同意後修正已簽核的 `reviews/bolt-01-g3.md`「AI 產出的處置」第 3 列 | 第 3 列由「四次修訂（critic 共五輪，最終 blob `92a1b53`）」「G3-01 至 G3-24」改為「六次修訂（critic 共七輪，最終 blob `41204bb`）」「G3-01 至 G3-26」，與第 4 行核准版本一致；待 BSugarSweet 於下一個 PR 確認 | 先前自行撰寫 S4 指令，未使用 `ai/prompts.md`，且會接著執行 S5：PO 指出後改用專案指令 | 0 | actcfx |
+| 2026-11-10 | Bolt 01 / 紀錄 | Claude Opus 5.5 | （非 Codex agent） | 修正 `scripts/timelog.sh` 在 Linux 上 stop、status 失敗（`date -r` 為 macOS 寫法）；依 PO 指示直接修改已核准 `spec.md` 的狀態標頭 | `fmt_epoch` 先用 GNU `date -d @N`，失敗再用 BSD `date -r N`，已在暫存 repo 測試 start、status、stop、summary；`spec.md` 狀態由「Draft，待 G3 審查」改為已核准並註明核准版本 `32e10ee`。PO 決定不開 CR：只改標頭、不改需求內容，偏離 METHOD.md §6；spec blob 因此不再是 `41204bb`，核准內容仍以 commit `32e10ee` 為準 | 無 | +5 | actcfx |
+| 2026-11-10 | Bolt 01 / S4 | Codex（gpt-6.1-sol 主執行緒；uml_drafter gpt-6-luna） | 主執行緒、uml_drafter | 依 `ai/prompts.md` S4 以 G3 核准版本 `32e10ee` 起草 UML | 7 份 DRAFT PlantUML（用例、領域類別、4 張循序、1 張活動）；計畫 T9（`f14a157`） | 無整份拒絕；問題由 S5 critic 提出，於 G4 處置 | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / S5 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（FULL）、critic（UML） | 依 `ai/prompts.md` S5 平行建立追溯表與審查 UML | `traceability.md`；critic U-F01 至 U-F15（`f06f408`） | tracer 把 FR-23 誤標為 Mapped（G4 R-01） | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / CR-002 | Codex（gpt-6.1-sol；tracer gpt-6-luna） | 主執行緒、tracer（IMPACT）、spec_writer、critic（SPEC） | 影響分析；依 CR-002 修訂 FR-01、FR-30、FR-32、FR-33 並限定範圍再審 | 影響清單；spec 修訂（`35101cc`），critic 無發現 | 第一次派 spec_writer 失敗：同一 Codex 對話的 agent 執行緒已達上限，改用新對話 | ＋5 | actcfx |
+| 2026-11-10 | Bolt 01 / G4 修訂 | Codex（gpt-6.1-sol；uml_drafter、tracer gpt-6-luna） | 主執行緒、uml_drafter、critic（UML）、tracer（FULL） | 依 G4 處置與 CR-002 修訂 UML 兩輪，每輪限定範圍再審並更新追溯表 | 第 1 輪（`12a2a06`）；第 2 輪修正 U2-F01 至 U2-F06；追溯表 11 Mapped、23 Partial、0 Gap | U3-F01（活動圖重試路徑）由 PO 拒絕；critic 因 `shell_tool = false` 只審查 Orchestrator 轉述的摘錄 | ＋10 | actcfx |
+| 2026-11-10 | Bolt 01 / S4–G4 | Claude Opus 5.5 | （非 Codex agent） | 填入 `ai/prompts.md` 指令的 hash；預檢 UML；對照 critic 與 tracer 結果；起草 G4 處置建議與審查紀錄、CR-002、CR-002 修訂與 UML 修訂兩輪的 Codex 指令；由 `~/.codex/sessions` 推算 AI 時間 | G4 處置（PO 回答「照你說的」）；R-01、R-02；CR-002 推導規則與商家可見範圍建議；U3-F01 拒絕建議；UML 修訂指令（`ai/prompts.md` 沒有對應指令） | 第一次回答 S4 時自行撰寫指令且會接著執行 S5：PO 指出應使用 `ai/prompts.md` | ＋20 | actcfx |
 
 ## AI 錯誤案例
 
@@ -44,5 +52,11 @@
 |---|---|---|---|---|---|
 | 00 | G0 憲章 | 15| 60（actcfx）＋ 48（BSugarSweet） | 2 | 5 |
 | CR-001 | 範圍變更（方法文件與憲章 1.1.0） | 10 | 10（actcfx）＋ 15（BSugarSweet） | 1 | 1 |
-| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5 (BSugarSweet） | 2 | 0 |
+| 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5（BSugarSweet） | 2 | 0 |
 | 01 | G2 澄清問題 | 10 | 21（actcfx）＋ 14（BSugarSweet） | 1 | 0 |
+| 01 | S3 需求起草與審查 | 0 | 0 | 22 | 27（Claude 誤代跑 S3，AI 時間） |
+| 01 | G3 核准需求 | 0 | 50（actcfx）＋ 未記錄（BSugarSweet） | 0 | 0 |
+| 01 | S4 建立 UML | 0 | 0 | 5 | 0 |
+| 01 | S5 追溯與 UML 審查 | 0 | 0 | 6 | 0 |
+| 01 | CR-002 學生登入與彙總狀態 | 0 | 未記錄（PO 釐清含在 G4 審查時間內） | 4 | 0 |
+| 01 | G4 核准 UML（含兩輪修訂） | 0 | 43（actcfx）＋ 未記錄（BSugarSweet） | 12 | 0 |

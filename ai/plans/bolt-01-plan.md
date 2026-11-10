@@ -26,18 +26,26 @@
 | T6 | spec_writer | G3-25–G3-26、F-17、spec.md@52a0944（blob） | `spec.md` 修訂 | T5 | 每個 finding 都有處置 | done | — |
 | T7 | critic (SPEC) | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | findings | T6 | 沒有未處理的 finding | done | — |
 | T8 | Reviewer | `spec.md`@41204bb32c286d395447142ddb0b7af529e33296（blob） | `checklist.md` | T7 | checklist 完成 | done | G3 |
-| T9 | uml_drafter | `spec.md`@<G3 hash> | `uml/` | G3 | 四種圖完成 | todo | — |
-| T10 | tracer (FULL) | spec@<G3 hash>、`uml/`@<hash> | `traceability.md` | T9 | 沒有空白對應或已列出 | todo | — |
-| T11 | critic (UML) | spec@<G3 hash>、`uml/`@<hash> | findings | T9 | 報告完成 | todo | G4 |
+| T9 | uml_drafter | `spec.md`@32e10eeb9c4b78bcfb40567c6ca9db7bb1cfe57e | `uml/` | G3 | 四種圖完成 | done | — |
+| T10 | tracer (FULL) | spec@32e10ee、`uml/`@f14a1578 | `traceability.md` | T9 | 沒有空白對應或已列出 | done | — |
+| T11 | critic (UML) | spec@32e10ee、`uml/`@f14a1578 | findings | T9 | 報告完成 | done | G4 |
 | T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | T14 | 所有紀錄完成 | todo | G5 |
 | T13 | scaffolder | spec@<G3 hash>、`uml/`@<G4 hash> | `frontend/`、`backend/` | G4 | 符合 METHOD.md 第 5 節的完成條件 | todo | — |
 | T14 | tracer (CODE) | `traceability.md`、`frontend/`、`backend/`@<hash> | `traceability.md` 程式模組欄 | T13 | 沒有空白對應或已列出 | todo | — |
+| T15 | uml_drafter | spec@35101cc、UML@f14a1578、G4 審查及 CR-002@12fd02a | `uml/` 修訂 | G3 重新核准 | 套用接受與部分接受的處置及 CR-002 影響 | done | — |
+| T16 | tracer (FULL) | spec@35101cc、T15 完成的 UML、intent、questions、G4 審查及 CR-002@12fd02a | `traceability.md` | T15 | 列出所有追溯缺口 | done | G4 |
+| T17 | critic (UML) | spec@35101cc、UML@f14a1578 與 T15 修訂、G4 審查及 CR-002@12fd02a | 限定範圍 findings | T15 | 回報處置結果與新增問題 | done | G4 |
+| T18 | uml_drafter | spec@35101cc、UML 第一輪修訂@12a2a06、G4 審查與 F-01 至 F-06 | `uml/` 第二輪修訂 | T15–T17 | 僅修訂六項指定問題 | done | — |
+| T19 | critic (UML) | spec@35101cc、T18 完成的 UML、G4 審查與 F-01 至 F-06 | 限定範圍 findings | T18 | 逐項確認修訂並按組別回報新增問題 | done | G4 |
+| T20 | tracer (FULL) | spec@35101cc、T18 完成的 UML、intent、questions、G4 審查 | `traceability.md` | T18 | 回報所有追溯缺口 | done | G4 |
 
 狀態值：todo / doing / blocked / done / rejected
 
 ## 平行執行
 
 - T10 與 T11 可以平行。
+- T16 與 T17 在 T15 完成後可以平行。
+- T19 與 T20 在 T18 完成後可以平行。
 - T13 必須在 G4 核准之後開始；T14 在 T13 完成後開始。
 - 其他任務循序執行。
 
@@ -58,3 +66,9 @@
 | 2026-11-10 | T6 done：依 G3 checklist 審查修訂四項，spec blob 52a0944。T7 限定範圍 SPEC 再審完成：四項均已修訂，F-17 為 FR-03 通用置底規則與降冪排序待確認事項的衝突；依本輪範圍保留，T7 blocked。T8 仍由 Reviewer 審查，停在 G3 | 待人工審查 |
 | 2026-11-10 | T6 done：依 G3-25、G3-26 修訂 FR-03、FR-05，移除兩項已確認事項。T7 限定範圍 SPEC 再審完成（spec blob 41204bb）：F-17 已解決，無新增 A 組或 B 組問題。T7 done，停在 G3 | 待人工審查 |
 | 2026-11-10 | T8 done：Reviewer 完成 `checklist.md` CHK001–CHK023（spec blob 41204bb，commit `32e10ee`）。等待 G3 核准 | 待人工審查 |
+| 2026-11-10 | T9 done：依 G3 核准版本 `32e10ee` 產出 7 份 DRAFT PlantUML，涵蓋四種圖。S5 尚未開始 | 待人工審查 |
+| 2026-11-10 | T10、T11 done：依規格 `32e10ee` 與 UML `f14a1578` 完成 FULL 追溯及 UML 審查。追溯缺口見 traceability.md；U-F01 至 U-F15 待 G4 處置。停在 G4 | 待人工審查 |
+| 2026-11-10 | CR-002 已接受（`abdd4fd`）；規格修訂尚未開始，Codex 子代理執行緒已達上限，無法啟動 spec_writer。待修訂及限定範圍 SPEC 再審後，由 PO 重新核准 | 待人工審查 |
+| 2026-11-10 | CR-002 規格修訂及限定範圍 SPEC 再審完成（核准基準 `32e10ee`，修訂版 spec blob `433fc4da96d7c1bb1017bc9d6da9bf30ee93e91b`）。修訂 FR-01、FR-30、FR-32、FR-33 與受影響的主要資料實體，移除已確認的 G3-14、G3-15。critic 在 AMBIGUOUS、MISSING、CONFLICT、INVENTED 四組均無發現。停在 G3，等待 PO 重新核准 | actcfx |
+| 2026-11-10 | T15 done。以 spec `35101cc` 及 UML `f14a1578` 為基準，依 G4 接受及部分接受的處置和 CR-002 影響修訂 UML。T16、T17 done。追溯表 10 Mapped、24 Partial、0 Gap；限定範圍審查新增 6 項問題，U-F06、U-F07、U-F11、R-01 尚未完全解決。停在 G4 | 待人工審查 |
+| 2026-11-10 | G4 第二輪。T18 done：依 spec `35101cc` 修訂 F-01 至 F-06（UML diff `ecd8dd9`）；T19、T20 done：F-01 至 F-04 及 F-06 已解決。F-05 尚缺活動圖驗證失敗後的重試路徑（A 組 MISSING）；B 組無新增問題。追溯表 11 Mapped、23 Partial、0 Gap。停在 G4 | 待人工審查 |

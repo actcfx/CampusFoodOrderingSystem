@@ -2,3 +2,15 @@
 2026-11-08	01	G2	審查	actcfx	01:22	01:38	16	PO 回答 Q-01 至 Q-24
 2026-11-09	01	G2	審查	actcfx			5	回答 R-03 至 R-12（兩輪）
 2026-11-09	01	G2	AI	actcfx			1	elicitor（2026-11-02，PO 提供的數字）
+2026-11-10	01	S3	AI	actcfx			7	Codex T4–T7 初稿與兩輪 critic，2026-11-09 22:15–22:23（由 ~/.codex/sessions 推得）
+2026-11-10	01	S3	AI	actcfx			15	Codex G3 期間修訂與再審 6 回合，2026-11-10 07:15–08:57 各回合合計（由 ~/.codex/sessions 推得）
+2026-11-10	01	S3	重做	actcfx			27	Claude 誤代跑 S3（subagent 執行時間合計，2026-11-09，產出作廢）
+2026-11-10	01	G3	審查	actcfx			30	G3 審查 08:00–08:30（依 reviews/bolt-01-g3.md）
+2026-11-10	01	G3	審查	actcfx			20	PO 回答 G3-01 至 G3-26（2026-11-09 至 11-10，PO 估計，待確認）
+2026-11-10	01	S4	AI	actcfx	16:05	16:10	5	Codex uml_drafter
+2026-11-10	01	S5	AI	actcfx	16:23	16:29	6	Codex tracer FULL + critic UML
+2026-11-10	01	CR-002	AI	actcfx			1	tracer IMPACT 16:52:51–16:53:16（由 ~/.codex/sessions 推得）
+2026-11-10	01	CR-002	AI	actcfx			3	新對話主執行緒 17:01:51–17:04:58，含 spec_writer 17:02–17:03、critic 17:03–17:04（由 ~/.codex/sessions 推得）；先前因執行緒上限失敗的嘗試時間未找到紀錄
+2026-11-10	01	G4	AI	actcfx			8	UML 修訂第 1 輪：主執行緒 17:29:45–17:38:04，含 uml_drafter 17:30–17:34、critic 與 tracer 平行 17:34–17:37（由 ~/.codex/sessions 推得）
+2026-11-10	01	G4	AI	actcfx			4	UML 修訂第 2 輪：主執行緒 17:42:25–17:46:10，含 uml_drafter 17:42–17:43、critic 與 tracer 平行 17:44–17:45（由 ~/.codex/sessions 推得）
+2026-11-10	01	G4	審查	actcfx			43	G4 審查 16:43–17:26（依 reviews/bolt-01-g4.md；含 CR-002 釐清，待確認）

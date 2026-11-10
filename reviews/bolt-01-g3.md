@@ -84,7 +84,7 @@
 |---|---|---|
 | Claude（Claude Code）代替 Codex 執行的 S3（spec_writer、critic 三輪） | 拒絕 | 違反 METHOD.md 3.2 角色分工；產出未進入 repo，S3 由 Codex 重跑 |
 | `questions.md` 標頭狀態由 DRAFT 改為 DONE（`ede167f`） | 接受 | G2 核准後只改狀態標頭，內容未變，核准版本仍為 `db1a766` |
-| Codex spec_writer 起草的 `spec.md` 與四次修訂（critic 共五輪，最終 blob `92a1b53`） | 接受 | A 組 findings 已修正並經 critic 確認；B 組依 G3-01 至 G3-24 修訂，未決項目列入 Unconfirmed |
+| Codex spec_writer 起草的 `spec.md` 與六次修訂（critic 共七輪，最終 blob `41204bb`） | 接受 | A 組 findings 已修正並經 critic 確認；B 組依 G3-01 至 G3-26 修訂，未決項目列入 Unconfirmed |
 
 ## 決定
 
