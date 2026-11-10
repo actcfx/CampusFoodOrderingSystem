@@ -2,7 +2,7 @@
 
 - **功能分支** `bolt/01-campus-ordering`
 - **建立日期** 2026-11-09
-- **狀態** Draft，待 G3 審查
+- **狀態** 已核准（G3，2026-11-10，`reviews/bolt-01-g3.md`，核准版本 `32e10ee`）
 - **需求輸入** `intent.md` 與含 G2 補充的 `questions.md`，版本 `db1a76681de3db1b3a94fb95052eba5012f35b56`。G3-nn 引用指 `reviews/bolt-01-g3.md` 的「G3 前 PO 決定」，其中已確定的 G3 決定優先適用於與原回答衝突之處。
 - **交付邊界** 本規格描述系統行為。期中依核准規格建模，架構雛形依核准 UML 建立（METHOD.md §5、CR-001）。
 

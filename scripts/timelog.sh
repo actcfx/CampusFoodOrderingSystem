@@ -61,6 +61,11 @@ append() {
     printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$@" >> "$log"
 }
 
+# Format an epoch time. GNU date (Linux) uses -d @N; BSD date (macOS) uses -r N.
+fmt_epoch() {
+    date -d "@$1" "$2" 2>/dev/null || date -r "$1" "$2"
+}
+
 cmd="$1"; shift
 
 case "$cmd" in
@@ -97,8 +102,8 @@ stop)
     IFS=$'\t' read -r start_epoch bolt step cat person note < "$f" || true
     end_epoch="$(date +%s)"
     minutes=$(( (end_epoch - start_epoch + 30) / 60 ))
-    append "$(date -r "$start_epoch" '+%Y-%m-%d')" "$bolt" "$step" "$cat" "$person" \
-        "$(date -r "$start_epoch" '+%H:%M')" "$(date -r "$end_epoch" '+%H:%M')" "$minutes" "${note:-}"
+    append "$(fmt_epoch "$start_epoch" '+%Y-%m-%d')" "$bolt" "$step" "$cat" "$person" \
+        "$(fmt_epoch "$start_epoch" '+%H:%M')" "$(fmt_epoch "$end_epoch" '+%H:%M')" "$minutes" "${note:-}"
     rm -f "$f"
     echo "Stopped: Bolt $bolt / $step / $cat ($person): $minutes min"
     ;;
@@ -117,7 +122,7 @@ status)
         [ -f "$s" ] || continue
         found=true
         IFS=$'\t' read -r start_epoch bolt step cat person note < "$s" || true
-        echo "Running: Bolt $bolt / $step / $cat ($person) since $(date -r "$start_epoch" '+%m-%d %H:%M'), $(( ($(date +%s) - start_epoch) / 60 )) min"
+        echo "Running: Bolt $bolt / $step / $cat ($person) since $(fmt_epoch "$start_epoch" '+%m-%d %H:%M'), $(( ($(date +%s) - start_epoch) / 60 )) min"
     done
     $found || echo "No running timers."
     ;;
