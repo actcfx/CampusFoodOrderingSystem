@@ -55,8 +55,8 @@
 | 01 | G1 範圍與輸入 | 10 | 10（actcfx）＋ 5（BSugarSweet） | 2 | 0 |
 | 01 | G2 澄清問題 | 10 | 21（actcfx）＋ 14（BSugarSweet） | 1 | 0 |
 | 01 | S3 需求起草與審查 | 0 | 0 | 22 | 27（Claude 誤代跑 S3，AI 時間） |
-| 01 | G3 核准需求 | 0 | 50（actcfx）＋ 未記錄（BSugarSweet） | 0 | 0 |
+| 01 | G3 核准需求 | 0 | 50（actcfx）＋ 55（BSugarSweet） | 0 | 0 |
 | 01 | S4 建立 UML | 0 | 0 | 5 | 0 |
 | 01 | S5 追溯與 UML 審查 | 0 | 0 | 6 | 0 |
 | 01 | CR-002 學生登入與彙總狀態 | 0 | 未記錄（PO 釐清含在 G4 審查時間內） | 4 | 0 |
-| 01 | G4 核准 UML（含兩輪修訂） | 0 | 43（actcfx）＋ 未記錄（BSugarSweet） | 12 | 0 |
+| 01 | G4 核准 UML（含兩輪修訂） | 0 | 43（actcfx）＋ 28（BSugarSweet） | 12 | 0 |
