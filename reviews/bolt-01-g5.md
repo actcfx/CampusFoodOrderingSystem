@@ -1,11 +1,11 @@
 # Bolt 01 — Gate G5 審查紀錄
 
 - 關卡：G5（人類檢查 diff、提交、結案）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/traceability.md`、`frontend/`、`backend/`（`1d3afee1add4a7a0ba5092e788dae20fa04f13a2`）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/traceability.md`、`frontend/`、`backend/`（`df8b224b738c08cf09ccbea3299dd4c5ed47d703`）
 - 審查人：actcfx
 - 核准人：
 - 開始時間：2026/11/11 14:43
-- 結束時間：
+- 結束時間：2026/11/11 15:30
 
 > 草稿：AI（Claude）依 METHOD.md §5 完成條件檢查架構雛形後起草，處置欄由 PO 於 2026-11-11 決定。G5 另含 S6 結案（T12、transcript、usage log），完成後補記於本檔。
 
@@ -32,6 +32,7 @@
 | G5-05 tracer CODE：StudentAccount–Cart 關聯、管理者直接交付帳密給商家沒有程式對應 | tracer | MISSING | 接受 | 前者因 FR-15 保存方式為 Unconfirmed；後者是人與人之間的動作，不需要程式 |
 | G5-06 `npm audit`：backend 有 3 個 high，都來自 Prisma CLI（devDependency）依賴的 `deepmerge-ts` <8.0.0；`npm audit fix --force` 會把 prisma 降到 6.12.0，屬破壞性變更 | 人類（actcfx 產生 lock 檔時發現） | 其他 | 延至期末 | 只影響開發工具，不在執行時的相依套件中；降版會改動已驗證的 Prisma 版本 |
 | G5-07 本機 Node 為 v18.19.1，低於 `package.json` 的 `engines`（^20.19.0 或 >=22.12.0）；Vite 7、NestJS 11 都需要 Node 20 以上 | 人類（actcfx 產生 lock 檔時發現） | 其他 | 已解決 | lock 檔可在 Node 18 產生，但前後端的建置與執行需要 Node 20.19 以上 |
+| G5-08 `traceability.md` 第 94 行仍描述補假資料前的後端（多數方法丟出 `NotImplementedException`），第 7 行的程式雛形基準沒有 commit hash | Codex Orchestrator（T12 摘要） | 其他 | 接受 | PO 同意由 Claude 直接更正這兩處說明文字，未重跑 tracer：補假資料只改回傳值，Code module 欄的對應不變 |
 
 ## AI 產出的處置
 

@@ -4,7 +4,7 @@
 - **規格基準** `specs/001-campus-ordering/spec.md` @ `35101cc3eb3e5a47f20310dabf37feb5937ea5e8`
 - **UML 基準** `specs/001-campus-ordering/uml/` round 2, revised from round 1 `12a2a063d234937788c4f940c183c68cd0aba7e7`
 - **狀態說明** Mapped 表示有對應且圖中至少描述主要結構或流程。Partial 表示圖中只有廣義步驟、屬性或需求 ID 註記，未表達全部規則。Gap 表示找不到能表達該需求的 UML 元素。
-- **程式雛形基準** Bolt 01 T13 worktree output after approved UML `dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb`; code module entries are mapped from source requirement ID comments and checked against UML elements.
+- **程式雛形基準** Bolt 01 T13 output after approved UML `dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb` (scaffold `66be61d`; mock responses `1d3afee`); code module entries are mapped from source requirement ID comments and checked against UML elements.
 
 | Source | Requirement ID | UML element | Code module | Status |
 |---|---|---|---|---|
@@ -91,4 +91,4 @@ Student registration and role sign-in forms are present, but their buttons are d
 
 No executable TypeScript, React, or Prisma source module was found without requirement ID comments. The `frontend/.gitignore` and `backend/.gitignore` files are repository configuration, not code modules.
 
-The code modules are architecture contracts and placeholders. Most backend service methods throw `NotImplementedException`; catalog browsing and search return empty mock data. Their entries establish requirement-to-module coverage for the scaffold and do not claim implemented business behavior. The administrator sign-in screen is a placeholder title, and the frontend does not yet implement account-management interactions.
+The code modules are architecture contracts with mock responses. Backend service methods return fixed mock data with no internal logic (`1d3afee`); `clearAfterSubmission()` remains a stub with no HTTP route. Their entries establish requirement-to-module coverage for the scaffold and do not claim implemented business behavior. The administrator sign-in screen is a placeholder title, and the frontend does not yet implement account-management interactions.
