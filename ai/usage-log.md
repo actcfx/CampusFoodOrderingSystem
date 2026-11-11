@@ -33,6 +33,7 @@
 | 2026-11-11 | Bolt 01 / S7 重做 | Codex（gpt-6.1-sol） | 主執行緒、scaffolder | 只改 `backend/src/` 回傳值，讓 29 個端點回傳固定假資料 | 29 個端點回傳 200 或 201；金額符合 SC-01、SC-06，彙總狀態只在學生回應（`1d3afee`） | 無 | −4 | actcfx |
 | 2026-11-11 | Bolt 01 / S6 | Codex（gpt-6.1-sol） | 主執行緒 | 依 `ai/prompts.md` S6 整理本 Bolt 接受與拒絕的 AI 產出，更新 T12 | 計畫「T12 結案摘要」；指出 `traceability.md` 說明文字過時（G5-08） | 無 | ＋15 | actcfx |
 | 2026-11-11 | Bolt 01 / S7–G5 | Claude Opus 5.5 | （非 Codex agent） | 依 METHOD.md §5 檢查架構雛形；起草補假資料指令；開啟並起草 G5 紀錄；查 `npm audit` 來源；說明 Node 22 升級；更正 `traceability.md` 兩處說明；推算 AI 時間 | G5-01 至 G5-08 的發現與建議；補假資料指令；traceability 更正（G5-08） | 建議由 Codex 開網路產生 lock 檔的替代方案：PO 改由人類在本機產生 | ＋20 | actcfx |
+| 2026-11-11 | Bolt 01 / S6 transcript | Claude Opus 5.5 | （非 Codex agent） | 依 PO 決定提交 Bolt 01 全部 38 份 Codex session：複製到 `ai/transcripts/raw/bolt-01/`（gitignored），執行 `redact-transcript.sh` 第一輪去敏；依 PO 要求再移除 Codex 系統提示與已連接工具清單 | 修正 `redact-transcript.sh` 兩個問題：待查行超過 50 行時因 pipefail 與 SIGPIPE 靜默中止；電話號碼規則誤換 git hash 內的數字（改為前後不可為十六進位字元）。新增 `scripts/strip-codex-system.py`：移除 base_instructions、工具清單、Codex 的 developer 訊息、world_state、collaboration_mode、帳號 ID 與桌面 app 附加頁面，保留 `.codex/agents/` 的專案指令（29 處）。輸出 17 MB，JSON 皆可解析 | 第一次執行時未發現待查清單為空是腳本中止所致，檢查輸出結尾才發現 | 0 | actcfx |
 
 ## AI 錯誤案例
 

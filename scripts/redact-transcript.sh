@@ -48,7 +48,8 @@ redact_file() {
         $c{"token"}    += s/\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/<JWT>/g;
         $c{"token"}    += s/\b(Bearer|Basic)\s+[A-Za-z0-9._~+\/=-]{16,}/$1 <TOKEN>/gi;
         $c{"secret value"} += s/\b((?:api[_-]?key|access[_-]?token|auth[_-]?token|token|secret|password|passwd|pwd)\\?"?\s*[:=]\s*\\?"?)[^"\s,\\]{6,}/$1<SECRET>/gi;
-        $c{"phone"}    += s/(?<!\d)(?:\+886[- ]?9|09)\d{2}[- ]?\d{3}[- ]?\d{3}(?!\d)/<PHONE>/g;
+        # Hex neighbours are excluded so digits inside git hashes and UUIDs are not taken as phone numbers.
+        $c{"phone"}    += s/(?<![0-9A-Fa-f])(?:\+886[- ]?9|09)\d{2}[- ]?\d{3}[- ]?\d{3}(?![0-9A-Fa-f])/<PHONE>/g;
         $c{"national id"} += s/\b[A-Z][12]\d{8}\b/<NATIONAL_ID>/g;
         END {
             for my $k (sort keys %c) { printf STDERR "  %-13s %d\n", $k, $c{$k} if $c{$k} }
@@ -82,7 +83,15 @@ hits="$(find "$scan_target" -type f ! -name '.DS_Store' -exec perl -ne '
     push @kind, "ID-like"  if $l =~ /\b[A-Za-z]\d{7,9}\b/;
     print "  $ARGV:$. (", join(", ", @kind), ")\n" if @kind;
     close ARGV if eof;
-' {} + | head -50)"
-if [ -n "$hits" ]; then printf '%s\n' "$hits"; else echo "  (none found)"; fi
+' {} + || true)"
+# Do not cut the list with head inside the pipeline: with pipefail, the
+# SIGPIPE ended the whole script before anything was printed.
+if [ -n "$hits" ]; then
+    total="$(printf '%s\n' "$hits" | wc -l | tr -d ' ')"
+    printf '%s\n' "$hits" | head -50 || true
+    if [ "$total" -gt 50 ]; then echo "  ... $total lines in total; only the first 50 are shown."; fi
+else
+    echo "  (none found)"
+fi
 echo
 echo "Next: the Reviewer checks the output with ai/transcripts/README.md, and a second human confirms it."
