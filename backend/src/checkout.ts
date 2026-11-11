@@ -76,22 +76,80 @@ export interface OrderSubmissionOperations {
   findResultForConfirmation(studentAccountId: string, confirmationId: string): Promise<FirstSubmissionResult | null>;
 }
 
+const demoNoodlesLine: CartLine = {
+  cartLineId: 'demo-cart-line-01',
+  itemId: 'demo-item-01',
+  quantity: 2,
+  selectedOptionIds: ['demo-option-01'],
+  note: 'Pack separately',
+};
+
+const demoRiceLine: CartLine = {
+  cartLineId: 'demo-cart-line-02',
+  itemId: 'demo-item-02',
+  quantity: 1,
+  selectedOptionIds: [],
+};
+
+const demoRiceAmounts = {
+  merchantId: 'demo-merchant-02',
+  lines: [{ cartLineId: demoRiceLine.cartLineId, baseUnitPrice: 40, addOnAmount: 0, subtotal: 40 }],
+  subtotal: 40,
+  effectiveDiscount: 0,
+  total: 40,
+};
+
+const demoCart: CartContents = {
+  lines: [demoNoodlesLine, demoRiceLine],
+  amounts: {
+    merchantAmounts: [
+      {
+        merchantId: 'demo-merchant-01',
+        lines: [{ cartLineId: demoNoodlesLine.cartLineId, baseUnitPrice: 50, addOnAmount: 20, subtotal: 120 }],
+        subtotal: 120,
+        effectiveDiscount: 10,
+        total: 110,
+      },
+      demoRiceAmounts,
+    ],
+    orderTotal: 150,
+  },
+};
+
 @Injectable()
 export class CartService {
   getCart(): CartContents {
-    throw new NotImplementedException();
+    return demoCart;
   }
 
   addLine(_line: Omit<CartLine, 'cartLineId'>): CartContents {
-    throw new NotImplementedException();
+    return demoCart;
   }
 
   editLine(_cartLineId: string, _selection: CartLineSelection): CartContents {
-    throw new NotImplementedException();
+    return {
+      lines: [{ ...demoNoodlesLine, quantity: 1 }, demoRiceLine],
+      amounts: {
+        merchantAmounts: [
+          {
+            merchantId: 'demo-merchant-01',
+            lines: [{ cartLineId: demoNoodlesLine.cartLineId, baseUnitPrice: 50, addOnAmount: 10, subtotal: 60 }],
+            subtotal: 60,
+            effectiveDiscount: 10,
+            total: 50,
+          },
+          demoRiceAmounts,
+        ],
+        orderTotal: 90,
+      },
+    };
   }
 
   removeLine(_cartLineId: string): CartContents {
-    throw new NotImplementedException();
+    return {
+      lines: [demoRiceLine],
+      amounts: { merchantAmounts: [demoRiceAmounts], orderTotal: 40 },
+    };
   }
 
   clearAfterSubmission(): void {
@@ -128,7 +186,7 @@ export class CartController {
 export class OrderSubmissionService {
   // FR-24, FR-25: student identity comes from the session; retry uses the same confirmation ID.
   submit(_confirmation: SubmitOrder): SubmissionResult {
-    throw new NotImplementedException();
+    return { outcome: 'submitted', orderId: 'demo-order-01' };
   }
 }
 

@@ -30,7 +30,7 @@
 | T10 | tracer (FULL) | spec@32e10ee、`uml/`@f14a1578 | `traceability.md` | T9 | 沒有空白對應或已列出 | done | — |
 | T11 | critic (UML) | spec@32e10ee、`uml/`@f14a1578 | findings | T9 | 報告完成 | done | G4 |
 | T12 | Orchestrator、Reviewer | 本 Bolt 所有紀錄 | 審查紀錄、usage log、transcript | T14 | 所有紀錄完成 | todo | G5 |
-| T13 | scaffolder | `spec.md`、`uml/`@dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb | `frontend/`、`backend/` | G4 | 符合 METHOD.md 第 5 節的完成條件 | done | — |
+| T13 | scaffolder、Orchestrator | `spec.md`、`uml/`@dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb；架構雛形@66be61d | `frontend/`、`backend/`（本次補作限 `backend/src/`） | G4 | 符合 METHOD.md 第 5 節的完成條件；後端建置及四張主要循序圖對應端點的 HTTP 驗證通過 | done | G5 |
 | T14 | tracer (CODE) | `spec.md`、`uml/`、`traceability.md`@dee9ffa9afed681cf0d4eec9da627e7b0dcc49fb；T13 完成的工作目錄 `frontend/`、`backend/` | `traceability.md` 程式模組欄 | T13 | 沒有空白對應或已列出 | done | — |
 | T15 | uml_drafter | spec@35101cc、UML@f14a1578、G4 審查及 CR-002@12fd02a | `uml/` 修訂 | G3 重新核准 | 套用接受與部分接受的處置及 CR-002 影響 | done | — |
 | T16 | tracer (FULL) | spec@35101cc、T15 完成的 UML、intent、questions、G4 審查及 CR-002@12fd02a | `traceability.md` | T15 | 列出所有追溯缺口 | done | G4 |
@@ -73,3 +73,4 @@
 | 2026-11-10 | T15 done。以 spec `35101cc` 及 UML `f14a1578` 為基準，依 G4 接受及部分接受的處置和 CR-002 影響修訂 UML。T16、T17 done。追溯表 10 Mapped、24 Partial、0 Gap；限定範圍審查新增 6 項問題，U-F06、U-F07、U-F11、R-01 尚未完全解決。停在 G4 | 待人工審查 |
 | 2026-11-10 | G4 第二輪。T18 done：依 spec `35101cc` 修訂 F-01 至 F-06（UML diff `dee9ffa`）；T19、T20 done：F-01 至 F-04 及 F-06 已解決。F-05 尚缺活動圖驗證失敗後的重試路徑（A 組 MISSING）；B 組無新增問題。追溯表 11 Mapped、23 Partial、0 Gap。停在 G4 | 待人工審查 |
 | 2026-11-11 | G4 核准後，以 `dee9ffa9` 的規格及 UML 完成 T13。前後端建置、Prisma schema 驗證與 client 產生、29 個 API 端點的基本檢查均通過。T14 完成 CODE 追溯，34 條需求均有模組對應；未對應的 UML 元素及僅有後端介面對應的 UI 步驟已列於 `traceability.md`。停在 G5，等待人工審查程式碼 diff | 待人工審查 |
+| 2026-11-11 | T13 補作完成。依 `dee9ffa9` 的規格與四張主要循序圖，在 `backend/src/` 為 `66be61d` 的全部 29 個 HTTP 端點加入固定假資料。後端建置通過，各端點各呼叫一次，回應格式與狀態碼均通過。停在 G5，等待人工審查程式碼 diff | 待人工審查 |

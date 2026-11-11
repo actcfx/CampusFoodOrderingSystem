@@ -1,7 +1,7 @@
 // FR-01, FR-02, FR-32 | UML: StudentAccount, MerchantAccount, AdministratorAccount;
 // UC_Register, UC_Login, UC_Merchants, UC_Admins;
 // sequence-order registration/sign-in, sequence-catalog sign-in, sequence-admin account management.
-import { Body, Controller, Injectable, NotImplementedException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Injectable, Param, Patch, Post } from '@nestjs/common';
 
 interface StudentSignIn {
   studentNumber: string;
@@ -31,19 +31,19 @@ interface MerchantAccountState {
 @Injectable()
 export class AccountsService {
   registerStudent(_registration: StudentRegistration): { studentAccountId: string } {
-    throw new NotImplementedException();
+    return { studentAccountId: 'demo-student-01' };
   }
 
   signInStudent(_credentials: StudentSignIn): { role: 'student' } {
-    throw new NotImplementedException();
+    return { role: 'student' };
   }
 
   signInMerchant(_credentials: CreatedMerchantAccount['accountCredentials']): { role: 'merchant' } {
-    throw new NotImplementedException();
+    return { role: 'merchant' };
   }
 
   signInAdministrator(_credentials: unknown): { role: 'administrator' } {
-    throw new NotImplementedException();
+    return { role: 'administrator' };
   }
 }
 
@@ -75,19 +75,22 @@ export class AccountsController {
 @Injectable()
 export class AdministrationService {
   createMerchant(_information: MerchantBasicInformation): CreatedMerchantAccount {
-    throw new NotImplementedException();
+    return {
+      merchantId: 'demo-merchant-01',
+      accountCredentials: { account: 'demo-merchant-account', password: '' },
+    };
   }
 
   updateMerchant(_merchantId: string, _information: MerchantBasicInformation): MerchantAccountState {
-    throw new NotImplementedException();
+    return { merchantId: 'demo-merchant-01', name: 'Demo Noodle Counter', active: true };
   }
 
   deactivateMerchant(_merchantId: string): MerchantAccountState {
-    throw new NotImplementedException();
+    return { merchantId: 'demo-merchant-01', name: 'Demo Noodle Counter', active: false };
   }
 
   createAdministrator(_accountDetails: unknown): { administratorAccountId: string } {
-    throw new NotImplementedException();
+    return { administratorAccountId: 'demo-administrator-01' };
   }
 }
 

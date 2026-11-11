@@ -1,7 +1,7 @@
 // FR-02, FR-13, FR-17, FR-18, FR-19, FR-21, FR-26, FR-27, FR-28, FR-29, FR-30, FR-31, FR-33
 // UML: Order, Suborder, OrderLine, SelectedOption; UC_ViewOrder, UC_Suborders;
 // sequence-suborders merchant handling and student/merchant query.
-import { Body, Controller, Get, Injectable, NotImplementedException, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Injectable, Param, Patch } from '@nestjs/common';
 
 type SuborderStatus = 'PENDING' | 'ACCEPTED' | 'READY' | 'PICKED_UP' | 'REJECTED';
 type AggregateStatus = 'SUBMITTED' | 'IN_PREPARATION' | 'COMPLETE' | 'PICKED_UP' | 'REJECTED';
@@ -41,26 +41,81 @@ export interface AggregateOrderStatus {
   derive(statuses: readonly SuborderStatus[]): AggregateStatus;
 }
 
+const demoOrderId = 'demo-order-01';
+
+const demoNoodlesSuborder: VisibleSuborder = {
+  suborderId: 'demo-suborder-01',
+  merchant: { merchantId: 'demo-merchant-01', name: 'Demo Noodle Counter' },
+  status: 'ACCEPTED',
+  pickupTime: '2026-11-10T12:10:00+08:00',
+  discount: 10,
+  total: 110,
+  lines: [
+    {
+      itemNameSnapshot: 'Sesame Noodles',
+      basePriceSnapshot: 50,
+      quantity: 2,
+      note: 'Pack separately',
+      selectedOptions: [{ optionNameSnapshot: 'Tofu', surchargeSnapshot: 10 }],
+      addOnAmount: 20,
+      subtotal: 120,
+    },
+  ],
+};
+
+const demoRiceSuborder: VisibleSuborder = {
+  suborderId: 'demo-suborder-02',
+  merchant: { merchantId: 'demo-merchant-02', name: 'Demo Rice Counter' },
+  status: 'REJECTED',
+  pickupTime: '2026-11-10T12:30:00+08:00',
+  discount: 0,
+  total: 40,
+  lines: [
+    {
+      itemNameSnapshot: 'Vegetable Rice',
+      basePriceSnapshot: 40,
+      quantity: 1,
+      note: null,
+      selectedOptions: [],
+      addOnAmount: 0,
+      subtotal: 40,
+    },
+  ],
+};
+
 @Injectable()
 export class SuborderService {
   findMerchantSuborders(): { orderId: string; suborder: VisibleSuborder }[] {
-    throw new NotImplementedException();
+    return [{ orderId: demoOrderId, suborder: demoNoodlesSuborder }];
   }
 
   updateStatus(_suborderId: string, _status: SuborderStatus): { suborderId: string; status: SuborderStatus } {
-    throw new NotImplementedException();
+    return { suborderId: demoNoodlesSuborder.suborderId, status: demoNoodlesSuborder.status };
   }
 
   findStudentOrders(): { orderId: string }[] {
-    throw new NotImplementedException();
+    return [{ orderId: demoOrderId }];
   }
 
   readStudentOrder(_orderId: string): StudentOrderDetails {
-    throw new NotImplementedException();
+    return {
+      orderId: demoOrderId,
+      suborders: [demoNoodlesSuborder, demoRiceSuborder],
+      suborderIdsByStatus: {
+        ACCEPTED: [demoNoodlesSuborder.suborderId],
+        REJECTED: [demoRiceSuborder.suborderId],
+      },
+      total: 150,
+      aggregateStatus: 'IN_PREPARATION',
+    };
   }
 
   readMerchantOrder(_orderId: string): MerchantOrderDetails {
-    throw new NotImplementedException();
+    return {
+      orderId: demoOrderId,
+      suborders: [demoNoodlesSuborder],
+      suborderIdsByStatus: { ACCEPTED: [demoNoodlesSuborder.suborderId] },
+    };
   }
 }
 

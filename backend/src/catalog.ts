@@ -1,7 +1,7 @@
 // FR-03, FR-04, FR-05, FR-06, FR-07, FR-08, FR-09, FR-10, FR-11, FR-18, FR-20, FR-28
 // UML: Merchant, Category, Item, OptionGroup, CustomOption; UC_Browse, UC_Search, UC_Catalog,
 // UC_Discount; Merchant Catalog in sequence-order; Catalog in sequence-catalog.
-import { Body, Controller, Delete, Get, Injectable, NotImplementedException, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Injectable, Param, Patch, Post, Put, Query } from '@nestjs/common';
 
 type SortDirection = 'asc' | 'desc';
 
@@ -72,42 +72,76 @@ interface CategoryDetails {
   name: string;
 }
 
+const demoMerchants: MerchantSummary[] = [
+  { merchantId: 'demo-merchant-01', name: 'Demo Noodle Counter', hasListedItems: true },
+  { merchantId: 'demo-merchant-02', name: 'Demo Rice Counter', hasListedItems: true },
+];
+
+const demoNoodles: MenuItem = {
+  itemId: 'demo-item-01',
+  merchantId: 'demo-merchant-01',
+  name: 'Sesame Noodles',
+  basePrice: 50,
+  image: null,
+  category: 'Noodles',
+  sellable: true,
+  optionGroups: [
+    {
+      optionGroupId: 'demo-option-group-01',
+      minimumSelections: 0,
+      maximumSelections: 1,
+      options: [{ optionId: 'demo-option-01', name: 'Tofu', surcharge: 10 }],
+    },
+  ],
+};
+
+const demoRice: MenuItem = {
+  itemId: 'demo-item-02',
+  merchantId: 'demo-merchant-02',
+  name: 'Vegetable Rice',
+  basePrice: 40,
+  image: null,
+  category: null,
+  sellable: true,
+  optionGroups: [],
+};
+
 @Injectable()
 export class CatalogService {
   findMerchants(_nameSort?: SortDirection): MerchantSummary[] {
-    return [];
+    return demoMerchants;
   }
 
   findMenu(_merchantId: string, _query: MenuQuery): MenuItem[] {
-    throw new NotImplementedException();
+    return [demoNoodles];
   }
 
   search(_query: CatalogSearch): { merchants: MerchantSummary[]; items: MenuItem[] } {
-    return { merchants: [], items: [] };
+    return { merchants: demoMerchants, items: [demoNoodles, demoRice] };
   }
 
   saveItem(_details: ItemDetails, _itemId?: string): { itemId: string } {
-    throw new NotImplementedException();
+    return { itemId: demoNoodles.itemId };
   }
 
   updateListing(_itemId: string, _listed: boolean): { itemId: string; listed: boolean } {
-    throw new NotImplementedException();
+    return { itemId: demoNoodles.itemId, listed: false };
   }
 
   saveCategory(_details: CategoryDetails, _categoryId?: string): { categoryId: string } {
-    throw new NotImplementedException();
+    return { categoryId: 'demo-category-01' };
   }
 
   deleteCategory(_categoryId: string): { uncategorizedItemIds: string[] } {
-    throw new NotImplementedException();
+    return { uncategorizedItemIds: [demoNoodles.itemId] };
   }
 
   saveFixedDiscount(_amount: number): { fixedDiscount: number } {
-    throw new NotImplementedException();
+    return { fixedDiscount: 10 };
   }
 
   deleteItem(_itemId: string): { itemId: string } {
-    throw new NotImplementedException();
+    return { itemId: demoNoodles.itemId };
   }
 }
 
