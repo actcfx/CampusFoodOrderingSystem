@@ -1,0 +1,14 @@
+{
+  // FR-03, FR-24, NFR-01 | UML: Ordering System in sequence-order.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
+}
