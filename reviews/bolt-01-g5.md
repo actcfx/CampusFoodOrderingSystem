@@ -1,7 +1,7 @@
 # Bolt 01 — Gate G5 審查紀錄
 
 - 關卡：G5（人類檢查 diff、提交、結案）
-- 審查對象與版本（commit hash）：`specs/001-campus-ordering/traceability.md`、`frontend/`、`backend/`（`df8b224b738c08cf09ccbea3299dd4c5ed47d703`）
+- 審查對象與版本（commit hash）：`specs/001-campus-ordering/traceability.md`、`frontend/`、`backend/`（`a314d57014545d958db08d4a9834aedc9c53a1f2`；關閉時為 `df8b224`，之後依 G5-08 更正 traceability.md 說明文字）
 - 審查人：actcfx
 - 核准人：
 - 開始時間：2026/11/11 14:43
