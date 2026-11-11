@@ -7,7 +7,7 @@
 - 開始時間：2026/11/11 14:43
 - 結束時間：
 
-> 草稿：AI（Claude）依 METHOD.md §5 完成條件檢查架構雛形後起草；處置欄為 AI 建議，待 PO 決定。G5 另含 S6 結案（T12、transcript、usage log），完成後補記於本檔。
+> 草稿：AI（Claude）依 METHOD.md §5 完成條件檢查架構雛形後起草，處置欄由 PO 於 2026-11-11 決定。G5 另含 S6 結案（T12、transcript、usage log），完成後補記於本檔。
 
 ## S7 完成條件檢查（METHOD.md §5）
 
@@ -26,12 +26,12 @@
 | Finding / 項目 | 來源（critic / 人類） | 類型 | 處置（接受 / 拒絕 / 延後） | 理由 |
 |---|---|---|---|---|
 | G5-01 第 1 次 S7 的端點大多回應 501，不能回傳假資料（`66be61d`） | AI（Claude） | MISSING | 接受 | PO 選擇補假資料；scaffolder 重做（`1d3afee`），29 個端點均回傳假資料。`scaffolder.toml` 寫「may return mock data」，與 METHOD.md §5 的要求不一致 |
-| G5-02 沒有 `package-lock.json`，clone 後安裝的套件版本可能不同 | AI（Claude） | 其他 | （待 PO 決定；建議接受，由人類補 lock 檔） | Codex sandbox 無網路，lock 檔應由人類在本機執行 `npm install` 產生並 commit |
-| G5-03 管理者登入頁只有標題，沒有表單；學生與商家登入頁有表單 | AI（Claude） | MISSING | （待 PO 決定；建議延後到期末） | 頁面存在，FR-32「各有自己的登入畫面」已滿足；表單欄位屬內部功能 |
-| G5-04 學生前台與商家後台在同一個前端 app，以不同路由分開 | AI（Claude） | 其他 | （待 PO 決定；建議接受） | FR-32 要求分開的介面，未要求分開部署（G3-16 解讀） |
-| G5-05 tracer CODE：StudentAccount–Cart 關聯、管理者直接交付帳密給商家沒有程式對應 | tracer | MISSING | （待 PO 決定；建議接受） | 前者因 FR-15 保存方式為 Unconfirmed；後者是人與人之間的動作，不需要程式 |
-| G5-06 `npm audit`：backend 有 3 個 high，都來自 Prisma CLI（devDependency）依賴的 `deepmerge-ts` <8.0.0；`npm audit fix --force` 會把 prisma 降到 6.12.0，屬破壞性變更 | 人類（actcfx 產生 lock 檔時發現） | 其他 | （待 PO 決定；建議延後到期末，不執行 `--force`） | 只影響開發工具，不在執行時的相依套件中；降版會改動已驗證的 Prisma 版本 |
-| G5-07 本機 Node 為 v18.19.1，低於 `package.json` 的 `engines`（^20.19.0 或 >=22.12.0）；Vite 7、NestJS 11 都需要 Node 20 以上 | 人類（actcfx 產生 lock 檔時發現） | 其他 | （待 PO 決定；建議接受 `engines` 設定，人類改用 Node 22 執行） | lock 檔可在 Node 18 產生，但前後端的建置與執行需要 Node 20.19 以上 |
+| G5-02 沒有 `package-lock.json`，clone 後安裝的套件版本可能不同 | AI（Claude） | 其他 | 已解決 | Codex sandbox 無網路，lock 檔應由人類在本機執行 `npm install` 產生並 commit |
+| G5-03 管理者登入頁只有標題，沒有表單；學生與商家登入頁有表單 | AI（Claude） | MISSING | 延至期末 | 頁面存在，FR-32「各有自己的登入畫面」已滿足；表單欄位屬內部功能 |
+| G5-04 學生前台與商家後台在同一個前端 app，以不同路由分開 | AI（Claude） | 其他 | 接受| FR-32 要求分開的介面，未要求分開部署（G3-16 解讀） |
+| G5-05 tracer CODE：StudentAccount–Cart 關聯、管理者直接交付帳密給商家沒有程式對應 | tracer | MISSING | 接受 | 前者因 FR-15 保存方式為 Unconfirmed；後者是人與人之間的動作，不需要程式 |
+| G5-06 `npm audit`：backend 有 3 個 high，都來自 Prisma CLI（devDependency）依賴的 `deepmerge-ts` <8.0.0；`npm audit fix --force` 會把 prisma 降到 6.12.0，屬破壞性變更 | 人類（actcfx 產生 lock 檔時發現） | 其他 | 延至期末 | 只影響開發工具，不在執行時的相依套件中；降版會改動已驗證的 Prisma 版本 |
+| G5-07 本機 Node 為 v18.19.1，低於 `package.json` 的 `engines`（^20.19.0 或 >=22.12.0）；Vite 7、NestJS 11 都需要 Node 20 以上 | 人類（actcfx 產生 lock 檔時發現） | 其他 | 已解決 | lock 檔可在 Node 18 產生，但前後端的建置與執行需要 Node 20.19 以上 |
 
 ## AI 產出的處置
 
