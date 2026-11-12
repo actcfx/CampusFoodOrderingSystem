@@ -3,7 +3,7 @@
 - 關卡：G5（人類檢查 diff、提交、結案）
 - 審查對象與版本（commit hash）：`specs/001-campus-ordering/traceability.md`、`frontend/`、`backend/`（`a314d57014545d958db08d4a9834aedc9c53a1f2`；關閉時為 `df8b224`，之後依 G5-08 更正 traceability.md 說明文字）
 - 審查人：actcfx
-- 核准人：
+- 核准人：BSugarSweet
 - 開始時間：2026/11/11 14:43
 - 結束時間：2026/11/11 15:30
 
@@ -44,7 +44,7 @@
 
 ## 決定
 
-- [ ] 核准，可以進入下一步
+- [x] 核准，可以進入下一步
 - [ ] 退回，需要修訂（寫明要修訂的項目）
 
-核准人簽名與日期：
+核准人簽名與日期：BSugarSweet 2026/11/12
