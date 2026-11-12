@@ -108,4 +108,4 @@ Orchestrator 的 T12 摘要已完成。Reviewer 仍須整理工時與 usage log�
 | 2026-11-10 | G4 第二輪。T18 done：依 spec `35101cc` 修訂 F-01 至 F-06（UML diff `dee9ffa`）；T19、T20 done：F-01 至 F-04 及 F-06 已解決。F-05 尚缺活動圖驗證失敗後的重試路徑（A 組 MISSING）；B 組無新增問題。追溯表 11 Mapped、23 Partial、0 Gap。停在 G4 | 待人工審查 |
 | 2026-11-11 | G4 核准後，以 `dee9ffa9` 的規格及 UML 完成 T13。前後端建置、Prisma schema 驗證與 client 產生、29 個 API 端點的基本檢查均通過。T14 完成 CODE 追溯，34 條需求均有模組對應；未對應的 UML 元素及僅有後端介面對應的 UI 步驟已列於 `traceability.md`。停在 G5，等待人工審查程式碼 diff | 待人工審查 |
 | 2026-11-11 | T13 補作完成。依 `dee9ffa9` 的規格與四張主要循序圖，在 `backend/src/` 為 `66be61d` 的全部 29 個 HTTP 端點加入固定假資料。後端建置通過，各端點各呼叫一次，回應格式與狀態碼均通過。停在 G5，等待人工審查程式碼 diff | 待人工審查 |
-| 2026-11-11 | T12 的 Orchestrator 摘要完成，已彙整本 Bolt 的 AI 產出處置及理由。T12 等待 Reviewer 結案紀錄，其他任務均已完成。停在 G5 | 待人工審查 |
+| 2026-11-11 | T12 的 Orchestrator 摘要完成，已彙整本 Bolt 的 AI 產出處置及理由。T12 等待 Reviewer 結案紀錄，其他任務均已完成。停在 G5 | BSugarSweet |
