@@ -1,0 +1,28 @@
+{
+  "name": "campus-ordering-backend",
+  "private": true,
+  "description": "FR-03, FR-24, NFR-01 | UML: Ordering System in sequence-order; UC_Browse and UC_Submit",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "db:validate": "prisma validate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/platform-express": "^11.1.0",
+    "@prisma/client": "6.19.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "prisma": "6.19.3",
+    "typescript": "~5.9.3"
+  }
+}

@@ -1,0 +1,140 @@
+// FR-01, FR-02, FR-03, FR-04, FR-06, FR-07, FR-08, FR-09, FR-10, FR-11, FR-13,
+// FR-16, FR-17, FR-18, FR-19, FR-20, FR-21, FR-24, FR-26, FR-27, FR-28, FR-29,
+// FR-30, FR-32 | UML: domain-class StudentAccount, MerchantAccount, AdministratorAccount,
+// Merchant, Category, Item, OptionGroup, CustomOption, Order, Suborder, OrderLine and SelectedOption;
+// Merchant Account Store and Administrator Account Store in sequence-admin.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./campus-ordering.db"
+}
+
+model StudentAccount {
+  id                 String  @id @default(cuid())
+  studentNumber      String  @unique
+  nickname           String
+  passwordCredential String
+  orders             Order[]
+}
+
+model MerchantAccount {
+  id                 String   @id @default(cuid())
+  account            String   @unique
+  passwordCredential String
+  merchantId         String
+  merchant           Merchant @relation(fields: [merchantId], references: [id])
+}
+
+model AdministratorAccount {
+  id String @id @default(cuid())
+}
+
+model Merchant {
+  id            String            @id @default(cuid())
+  name          String            @unique
+  active        Boolean
+  fixedDiscount Int?
+  accounts      MerchantAccount[]
+  categories    Category[]
+  items         Item[]
+  suborders     Suborder[]
+}
+
+model Category {
+  id         String   @id @default(cuid())
+  name       String
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+  items      Item[]
+}
+
+enum InventoryMode {
+  QUANTITY
+  MANUAL_SOLD_OUT
+}
+
+model Item {
+  id              String        @id @default(cuid())
+  name            String
+  basePrice       Int
+  image           String?
+  listed          Boolean
+  inventoryMode   InventoryMode
+  stockQuantity   Int?
+  manuallySoldOut Boolean?
+  merchantId      String
+  merchant        Merchant      @relation(fields: [merchantId], references: [id])
+  categoryId      String?
+  category        Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  optionGroups    OptionGroup[]
+}
+
+model OptionGroup {
+  id                String         @id @default(cuid())
+  minimumSelections Int
+  maximumSelections Int
+  itemId            String
+  item              Item           @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  options           CustomOption[]
+}
+
+model CustomOption {
+  id            String      @id @default(cuid())
+  name          String
+  surcharge     Int
+  optionGroupId String
+  optionGroup   OptionGroup @relation(fields: [optionGroupId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  orderId          String          @id @default(cuid())
+  total            Int
+  studentAccountId String
+  student          StudentAccount @relation(fields: [studentAccountId], references: [id])
+  suborders        Suborder[]
+  // FR-33: aggregateStatus is derived in the order query contract from Suborder.status.
+}
+
+enum SuborderStatus {
+  PENDING
+  ACCEPTED
+  READY
+  PICKED_UP
+  REJECTED
+}
+
+model Suborder {
+  suborderId String         @id @default(cuid())
+  status     SuborderStatus @default(PENDING)
+  pickupTime DateTime
+  discount   Int
+  total      Int
+  orderId    String
+  order      Order          @relation(fields: [orderId], references: [orderId])
+  merchantId String
+  merchant   Merchant       @relation(fields: [merchantId], references: [id])
+  lines      OrderLine[]
+}
+
+model OrderLine {
+  id                String           @id @default(cuid())
+  itemNameSnapshot  String
+  basePriceSnapshot Int
+  quantity          Int
+  note              String?
+  suborderId        String
+  suborder          Suborder         @relation(fields: [suborderId], references: [suborderId])
+  selectedOptions   SelectedOption[]
+}
+
+model SelectedOption {
+  id                 String    @id @default(cuid())
+  optionNameSnapshot String
+  surchargeSnapshot  Int
+  orderLineId         String
+  orderLine           OrderLine @relation(fields: [orderLineId], references: [id])
+}
